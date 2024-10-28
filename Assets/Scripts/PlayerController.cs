@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerController : NetworkBehaviour
 {
+    public static PlayerController instance;
     Rigidbody2D rb;
     SpriteRenderer sr;
     bool canJump = true;
@@ -12,6 +13,11 @@ public class PlayerController : NetworkBehaviour
         sr = GetComponent<SpriteRenderer>();
         Application.targetFrameRate = 120;
         ControlsManager.instance.jumpButton.onDown += Jump;
+        instance = this;
+        if (isLocalPlayer)
+        {
+            PowerToolManager.instance.OnPlayerConnected();
+        }
     }
 
     void Update()

@@ -6,7 +6,7 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [HideInInspector]public bool isHolding;
     public System.Action onDown, onUp;
     [SerializeField] bool ShrinkOnClick = false;
-    public void OnPointerDown(PointerEventData eventData)
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
         isHolding = true;
         onDown?.Invoke();
@@ -14,7 +14,7 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             transform.localScale = Vector3.one * 0.9f;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public virtual void OnPointerUp(PointerEventData eventData)
     {
         isHolding = false;
         onUp?.Invoke();
