@@ -9,6 +9,7 @@ public class PlayerController : NetworkBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Application.targetFrameRate = 120;
+        ControlsManager.instance.jumpButton.onDown += Jump;
     }
 
     void Update()
@@ -16,17 +17,19 @@ public class PlayerController : NetworkBehaviour
         if (!isLocalPlayer) return;
         if ((canJump))
         {
-            rb.AddForce(Vector2.down * 20);
+            rb.AddForce(Vector2.down * 15);
             if (Input.GetKeyDown(KeyCode.Space)) {
-                rb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
+                Jump();
             }
 
-
-            if (Mathf.Abs(rb.velocityX) < 5)
-                transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * Time.deltaTime * 10, 0);
+            transform.position += new Vector3(ControlsManager.instance.horizontal * Time.deltaTime * 10, 0);
+            
         }
-
-
         Camera.main.transform.position += ((transform.position - new Vector3(0, 0, 10) - Camera.main.transform.position)) * Time.fixedDeltaTime * 5;
+    }
+
+    public void Jump()
+    {
+        rb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
     }
 }
