@@ -37,9 +37,9 @@ public class JumpPadPowerTool : NetworkBehaviour
     {
         if(cooldown < 0)
         {
-            cooldown = 30;
-            var jumpPad = Instantiate(p_JumpPad, transform.position, Quaternion.identity);
-            jumpPad.GetComponent<Rigidbody2D>().AddForce(delta, ForceMode2D.Impulse);;
+            cooldown = 0;
+            var jumpPad = Instantiate(p_JumpPad, transform.position + delta, Quaternion.identity);
+            jumpPad.GetComponent<Rigidbody2D>().AddForce(delta * 10, ForceMode2D.Impulse);;
             NetworkServer.Spawn(jumpPad);
         }
     }
