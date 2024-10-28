@@ -4,16 +4,20 @@ using UnityEngine;
 public class PlayerController : NetworkBehaviour
 {
     Rigidbody2D rb;
+    SpriteRenderer sr;
     bool canJump = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         Application.targetFrameRate = 120;
         ControlsManager.instance.jumpButton.onDown += Jump;
     }
 
     void Update()
     {
+        if (ControlsManager.instance.horizontal != 0)
+            sr.flipX = (ControlsManager.instance.horizontal > 0);
         if (!isLocalPlayer) return;
         if ((canJump))
         {
