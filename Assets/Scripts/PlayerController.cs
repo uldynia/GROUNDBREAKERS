@@ -19,12 +19,13 @@ public class PlayerController : NetworkBehaviour
             PowerToolManager.instance.OnPlayerConnected();
         }
     }
-
+    [SyncVar] bool isFlipped;
     void Update()
     {
+        sr.flipX = isFlipped;
+        if (!isOwned) return;
         if (ControlsManager.instance.horizontal != 0)
-            sr.flipX = (ControlsManager.instance.horizontal > 0);
-        if (!isLocalPlayer) return;
+            isFlipped = (ControlsManager.instance.horizontal > 0);
         if ((canJump))
         {
             rb.AddForce(Vector2.down * 15);
