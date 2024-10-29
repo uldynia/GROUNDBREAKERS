@@ -10,9 +10,9 @@ public class JumpPad : NetworkBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") && armingTime > 2)
+        if (other.CompareTag("Player") && armingTime > 2)
         {
-            PlayerController.instance.rb.AddForce(Vector3.up * 50, ForceMode2D.Impulse);
-        }
+            other.GetComponent<Rigidbody2D>().velocityY = 40;
+        }  
     }
 }
