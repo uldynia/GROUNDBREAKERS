@@ -1,16 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteAlways]
 public class TileRenderer : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    [SerializeField] List<Tile> tilesettings;
     void Update()
     {
-        
+        if(Takama.instance != null)
+        {
+
+        }        
     }
+
 }

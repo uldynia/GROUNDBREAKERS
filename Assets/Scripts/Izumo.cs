@@ -10,6 +10,7 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
 
     [SerializeField] CanvasGroup lobbyDisplay, loadingScreen;
     [SerializeField] TextMeshProUGUI playerCountText;
+    [SerializeField] Takama p_takama;
     private void Start()
     {
         NetworkServer.OnConnectedEvent += (NetworkConnectionToClient client) => playerCount++;
@@ -23,7 +24,12 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
         if(playerCount == playerReady)
         {
             startCooldown -= Time.deltaTime;
-            
+            if(startCooldown < 0) // start game
+            {
+                var takama = Instantiate(p_takama);
+                takama.Init(5000, 5000, 30);
+                NetworkServer.Spawn(takama.gameObject);
+            }
         }
         else
         {
