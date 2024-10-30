@@ -20,7 +20,7 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     void Update()
     {
         playerCountText.text = $"Players Ready: {playerReady}/{playerCount}\nStarting in: {(int)startCooldown}";
-        if (!PlayerController.instance.isServer || Takama.instance != null) return;
+        if (PlayerController.instance == null || !PlayerController.instance.isServer || Takama.instance != null) return;
         if(playerCount == playerReady)
         {
             startCooldown -= Time.deltaTime;
@@ -28,7 +28,6 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
             {
                 var takama = Instantiate(p_takama);
                 takama.Init(5000, 5000, 30);
-                NetworkServer.Spawn(takama.gameObject);
             }
         }
         else

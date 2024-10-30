@@ -12,7 +12,7 @@ public class JumpPad : NetworkBehaviour
     {
         if (other.CompareTag("Player") && armingTime > 2)
         {
-            other.GetComponent<Rigidbody2D>().velocityY = 40;
+            other.GetComponent<Rigidbody2D>().linearVelocityY = 40;
         }  
     }
 }

@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -339,6 +340,7 @@ MonoBehaviour:
   lobbyDisplay: {fileID: 457891204}
   loadingScreen: {fileID: 1927064952}
   playerCountText: {fileID: 1146162255}
+  p_takama: {fileID: -7341979091332906993, guid: e9daca23b724d2443bd874b02ea58822, type: 3}
 --- !u!1 &366294575
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +367,7 @@ Transform:
   m_GameObject: {fileID: 366294575}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.57, y: 3.05, z: 0}
+  m_LocalPosition: {x: 24.35, y: 3.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

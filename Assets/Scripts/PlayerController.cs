@@ -36,6 +36,7 @@ public class PlayerController : NetworkBehaviour
             transform.position += new Vector3(ControlsManager.instance.horizontal * Time.deltaTime * 10, 0);
             
         }
+        if (Vector3.SqrMagnitude(Camera.main.transform.position - transform.position) > 20) Camera.main.transform.position = transform.position - new Vector3(0, 0, 10);
         Camera.main.transform.position += ((transform.position - new Vector3(0, 0, 10) - Camera.main.transform.position)) * Time.fixedDeltaTime * 5;
     }
 
