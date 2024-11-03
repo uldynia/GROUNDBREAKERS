@@ -23,7 +23,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         StartCoroutine(init());
         IEnumerator init()
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
             BoxFill(Vector3Int.zero, 1, 0, 0, xsize, ysize);
             GenerateCircle(spawnpoint.x, spawnpoint.y, 30);
             TeleportToSpawn();

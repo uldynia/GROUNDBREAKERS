@@ -1,10 +1,12 @@
 using Mirror;
+using NUnit.Framework;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
 {
-    [SyncVar(hook =nameof(connect))] public int playerCount = 1, playerReady = 0;
+    [SyncVar(hook =nameof(connect))] public int playerCount, playerReady = 0;
     [SyncVar] public float startCooldown;
 
 
@@ -13,14 +15,17 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     [SerializeField] Takama p_takama;
     private void Start()
     {
-        NetworkServer.OnConnectedEvent += (NetworkConnectionToClient client) => playerCount++;
-        NetworkServer.OnDisconnectedEvent += (NetworkConnectionToClient client) => playerCount--;
+        if (Application.platform == RuntimePlatform.WindowsServer) { 
+            FindFirstObjectByType<NetworkManager>().StartServer();
+        }
     }
     // Update is called once per frame
     void Update()
     {
         playerCountText.text = $"Players Ready: {playerReady}/{playerCount}\nStarting in: {(int)startCooldown}";
         if (PlayerController.instance == null || !PlayerController.instance.isServer || Takama.instance != null) return;
+
+        playerCount = NetworkServer.connections.Count;
         if(playerCount == playerReady)
         {
             startCooldown -= Time.deltaTime;
