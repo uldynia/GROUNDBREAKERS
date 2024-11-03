@@ -141,7 +141,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!50 &8734583689223481216
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -152,8 +152,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: dd9be180e3bebf343a16a8b08f644b3e, type: 2}
   m_IncludeLayers:
@@ -231,6 +231,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  rb: {fileID: 0}
 --- !u!114 &7769184452185421520
 MonoBehaviour:
   m_ObjectHideFlags: 0

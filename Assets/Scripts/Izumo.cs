@@ -27,7 +27,8 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
             if(startCooldown < 0) // start game
             {
                 var takama = Instantiate(p_takama);
-                takama.Init(5000, 5000, 30);
+                NetworkServer.Spawn(takama.gameObject);
+                takama.Init(500, 500, 30);
             }
         }
         else
