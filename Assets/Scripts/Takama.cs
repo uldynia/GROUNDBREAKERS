@@ -11,7 +11,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     Tilemap tilemap;
     [SerializeField] List<TileBase> tiles;
 
-    Vector2Int spawnpoint;
+    [SyncVar] Vector2Int spawnpoint;
     private void Start()
     {
         Takama.instance = this;
@@ -19,10 +19,15 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     }
     public void Init(int xsize, int ysize, int missionlength)
     {
-        BoxFill(Vector3Int.zero, 1, 0, 0, xsize, ysize);
         spawnpoint = new Vector2Int(xsize / 10, ysize / 10 * 9);
-        GenerateCircle(spawnpoint.x, spawnpoint.y, 30);
-        TeleportToSpawn();
+        StartCoroutine(init());
+        IEnumerator init()
+        {
+            yield return new WaitForSeconds(3);
+            BoxFill(Vector3Int.zero, 1, 0, 0, xsize, ysize);
+            GenerateCircle(spawnpoint.x, spawnpoint.y, 30);
+            TeleportToSpawn();
+        }
     }
 
 
