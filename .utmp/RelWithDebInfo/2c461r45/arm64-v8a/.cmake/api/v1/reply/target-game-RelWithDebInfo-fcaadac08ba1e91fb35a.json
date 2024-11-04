@@ -78,7 +78,7 @@
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "C:/Users/xavie/.gradle/caches/transforms-3/bdb251bab1e8d5e1bf42fbdee7588360/transformed/jetified-games-activity-3.0.2/prefab/modules/game-activity_static/include"
+					"path" : "C:/Users/xavie/.gradle/caches/transforms-3/4533d298259fc52a43021fce53f5e4a9/transformed/jetified-games-activity-3.0.5/prefab/modules/game-activity_static/include"
 				}
 			],
 			"language" : "CXX",
@@ -89,12 +89,13 @@
 				8,
 				10,
 				12,
-				13,
-				14
+				14,
+				15,
+				16
 			],
 			"sysroot" : 
 			{
-				"path" : "C:/Program Files/Unity/Hub/Editor/6000.0.2f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/sysroot"
+				"path" : "C:/Program Files/Unity/Hub/Editor/6000.0.23f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/sysroot"
 			}
 		}
 	],
@@ -114,7 +115,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\xavie\\.gradle\\caches\\transforms-3\\bdb251bab1e8d5e1bf42fbdee7588360\\transformed\\jetified-games-activity-3.0.2\\prefab\\modules\\game-activity_static\\libs\\android.arm64-v8a\\libgame-activity_static.a",
+				"fragment" : "C:\\Users\\xavie\\.gradle\\caches\\transforms-3\\4533d298259fc52a43021fce53f5e4a9\\transformed\\jetified-games-activity-3.0.5\\prefab\\modules\\game-activity_static\\libs\\android.arm64-v8a\\libgame-activity_static.a",
 				"role" : "libraries"
 			},
 			{
@@ -130,7 +131,7 @@
 		"language" : "CXX",
 		"sysroot" : 
 		{
-			"path" : "C:/Program Files/Unity/Hub/Editor/6000.0.2f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/sysroot"
+			"path" : "C:/Program Files/Unity/Hub/Editor/6000.0.23f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/sysroot"
 		}
 	},
 	"name" : "game",
@@ -154,13 +155,15 @@
 				7,
 				9,
 				11,
-				15,
-				16,
+				13,
 				17,
 				18,
 				19,
 				20,
-				21
+				21,
+				22,
+				23,
+				24
 			]
 		},
 		{
@@ -172,8 +175,9 @@
 				8,
 				10,
 				12,
-				13,
-				14
+				14,
+				15,
+				16
 			]
 		}
 	],
@@ -208,6 +212,17 @@
 		{
 			"backtrace" : 1,
 			"path" : "GameActivity/UGAApplication.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "GameActivity/UGAConfiguration.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "GameActivity/UGAConfiguration.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -284,6 +299,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "GameActivity/UnityToGACallbacks.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "GameActivity/UnityToGAConfigurationCallbacks.h",
 			"sourceGroupIndex" : 0
 		},
 		{
