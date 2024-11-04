@@ -6,7 +6,8 @@ public class PowerToolButton : HoldButton, IInitializePotentialDragHandler, IDra
 {
     public System.Action<Vector3> onDrag, onEndDrag;
     public Image icon;
-    public Vector3 GetDelta(PointerEventData eventData) => (new Vector3(eventData.position.x, eventData.position.y) - transform.position).normalized;
+    public Vector3 start;
+    public Vector3 GetDelta(PointerEventData eventData) => (new Vector3(eventData.position.x, eventData.position.y) - start).normalized;
     public void OnDrag(PointerEventData eventData)
     {
         onDrag?.Invoke(GetDelta(eventData));
@@ -19,6 +20,7 @@ public class PowerToolButton : HoldButton, IInitializePotentialDragHandler, IDra
 
     public void OnInitializePotentialDrag(PointerEventData eventData)
     {
+        start = eventData.position;
         eventData.useDragThreshold = false;
     }
 }
