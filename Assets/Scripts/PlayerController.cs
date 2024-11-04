@@ -13,6 +13,8 @@ public class PlayerController : NetworkBehaviour
         sr = GetComponent<SpriteRenderer>();
         Application.targetFrameRate = 120;
         ControlsManager.instance.jumpButton.onDown += Jump;
+        var swag = (ControlsManager.instance.punchButton).GetComponent<PowerToolButton>();
+        swag.onDrag += Punch;
         if (isLocalPlayer)
         {
             instance = this;
@@ -43,5 +45,11 @@ public class PlayerController : NetworkBehaviour
     public void Jump()
     {
         rb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
+    }
+
+    public void Punch(Vector3 delta)
+    {
+        Vector3Int blockaffected = Vector3Int.RoundToInt(delta.normalized + transform.position);
+        Takama.instance.SetTile(blockaffected, 0);
     }
 }
