@@ -33,7 +33,7 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
             {
                 var takama = Instantiate(p_takama);
                 NetworkServer.Spawn(takama.gameObject);
-                takama.Init(500, 500, 30);
+                takama.Init(1000, 300, 30);
             }
         }
         else

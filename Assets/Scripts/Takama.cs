@@ -1,6 +1,4 @@
 using Mirror;
-using NUnit.Framework;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +7,9 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
 {
     public static Takama instance;
     Tilemap tilemap;
-    [SerializeField] List<TileBase> tiles;
+    [SerializeField] List<TileBase> tiles = new();
 
-    [SyncVar] Vector2Int spawnpoint;
+    [SyncVar] Vector3Int spawnpoint;
     private void Start()
     {
         Takama.instance = this;
@@ -19,18 +17,42 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     }
     public void Init(int xsize, int ysize, int missionlength)
     {
-        spawnpoint = new Vector2Int(xsize / 10, ysize / 10 * 9);
+        spawnpoint = new Vector3Int(xsize / 10, ysize / 10 * 9, 0);
+        Vector3Int point = spawnpoint;
         StartCoroutine(init());
         IEnumerator init()
         {
             yield return new WaitForSeconds(1);
             BoxFill(Vector3Int.zero, 1, 0, 0, xsize, ysize);
-            GenerateCircle(spawnpoint.x, spawnpoint.y, 30);
-            LineFill(0, (Vector3Int)spawnpoint, (Vector3Int)(spawnpoint + new Vector2Int(100, -100)), 3);
+            GenerateCircle(spawnpoint.x, spawnpoint.y, 10);
+            for (int i = 0; i < missionlength; i++)
+            {
+                point = DrawRandomLine(point, 30, 5, 0);
+                if(i % 5 == 0)
+                {
+                    GenerateCircle(point.x, point.y, 15);
+                }
+            }
             TeleportToSpawn();
         }
     }
+    public Vector3Int DrawRandomLine(Vector3Int currentPoint, int length, int thickness, int id)
+    {
+        float randomAngle = Random.Range(-15f, 15f);
+        if (Random.Range(0, 2) == 1) randomAngle -= 60;
+        float radians = randomAngle * Mathf.Deg2Rad;
 
+        // Calculate the direction vector
+        Vector2 direction = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
+
+        // Calculate the end point using the direction vector and length
+        Vector3Int endPoint = currentPoint + new Vector3Int(Mathf.RoundToInt(direction.x * length), Mathf.RoundToInt(direction.y * length), 0);
+
+        // Call LineFill to draw a line segment to the new point
+        LineFill(id, currentPoint, endPoint, thickness);
+
+        return endPoint;
+    }
 
     public void GenerateCircle(int xCenter, int yCenter, int radius)
     {
