@@ -8,7 +8,13 @@ public class PowerToolButton : HoldButton, IInitializePotentialDragHandler, IDra
     public Image icon;
     public Vector3 start;
     [SerializeField] GameObject joystick, joysticktop; // preview skill direction
-    public Vector3 GetDelta(PointerEventData eventData) => (new Vector3(eventData.position.x, eventData.position.y) - start).normalized;
+    PointerEventData lastPointerEventData;
+    public Vector3 GetDelta(PointerEventData eventData = null)
+    {
+        if (eventData == null) eventData = lastPointerEventData;
+        else lastPointerEventData = eventData;
+        return   (new Vector3(eventData.position.x, eventData.position.y) - start).normalized;
+    }
     public void OnDrag(PointerEventData eventData)
     {
         onDrag?.Invoke(GetDelta(eventData));

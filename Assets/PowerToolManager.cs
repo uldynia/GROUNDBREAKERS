@@ -11,5 +11,6 @@ public class PowerToolManager : MonoBehaviour
     public void OnPlayerConnected()
     {
         PlayerController.instance.GetComponent<JumpPadPowerTool>().Init(powerTool1);
+        PlayerController.instance.GetComponent<FlamethrowerPowerTool>().Init(powerTool2);
     }
 }
