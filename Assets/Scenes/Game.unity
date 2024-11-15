@@ -352,7 +352,7 @@ PrefabInstance:
     - target: {fileID: 849935159057126465, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 56405453324043922, guid: 1259ddcd3d6b42d498f5e2e92004b781, type: 3}
+      objectReference: {fileID: 21300000, guid: 1259ddcd3d6b42d498f5e2e92004b781, type: 3}
     - target: {fileID: 1219999893281702537, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
       propertyPath: icon
       value: 
@@ -2025,7 +2025,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2912297781628502651, guid: 401ef6632ba45e04583072136f41b5a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 401ef6632ba45e04583072136f41b5a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
