@@ -7,18 +7,16 @@ public class PlayerController : NetworkBehaviour
     public Rigidbody2D rb;
     SpriteRenderer sr;
     bool canJump = true;
+     public float cameraTargetSize = 10;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         Application.targetFrameRate = 120;
         ControlsManager.instance.jumpButton.onDown += Jump;
-        var swag = (ControlsManager.instance.punchButton).GetComponent<PowerToolButton>();
-        swag.onDrag += Punch;
         if (isLocalPlayer)
         {
             instance = this;
-            PowerToolManager.instance.OnPlayerConnected();
         }
     }
     [SyncVar] bool isFlipped;
@@ -40,6 +38,7 @@ public class PlayerController : NetworkBehaviour
         }
         if (Vector3.SqrMagnitude(Camera.main.transform.position - transform.position) > 20) Camera.main.transform.position = transform.position - new Vector3(0, 0, 10);
         Camera.main.transform.position += ((transform.position - new Vector3(0, 0, 10) - Camera.main.transform.position)) * Time.fixedDeltaTime * 5;
+        Camera.main.orthographicSize += Mathf.Clamp((cameraTargetSize - Camera.main.orthographicSize), -0.5f, 0.5f)  * Time.deltaTime * 10;
     }
 
     public void Jump()

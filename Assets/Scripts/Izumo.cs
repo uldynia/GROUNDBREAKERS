@@ -51,18 +51,26 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") && PlayerController.instance.isServer)
+        if(other.CompareTag("Player") )
         {
-            playerReady++;
-            Debug.Log($"Player entered the Ready zone. {playerReady}");
+            PlayerController.instance.cameraTargetSize = 12;
+            if(PlayerController.instance.isServer)
+            {
+                playerReady++;
+                Debug.Log($"Player entered the Ready zone. {playerReady}");
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && PlayerController.instance.isServer)
+        if (other.CompareTag("Player") )
         {
-            playerReady--;
-            Debug.Log($"Player left the Ready zone. {playerReady}");
+            PlayerController.instance.cameraTargetSize = 10;
+            if (PlayerController.instance.isServer)
+            {
+                playerReady--;
+                Debug.Log($"Player left the Ready zone. {playerReady}");
+            }
         }
     }
 }

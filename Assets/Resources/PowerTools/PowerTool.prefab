@@ -161,7 +161,8 @@ GameObject:
   - component: {fileID: 2746697522171188474}
   - component: {fileID: 4175280734549097006}
   - component: {fileID: 849935159057126465}
-  - component: {fileID: 1219999893281702537}
+  - component: {fileID: 3627906426957825433}
+  - component: {fileID: -1709727301107437433}
   m_Layer: 5
   m_Name: PowerTool
   m_TagString: Untagged
@@ -228,7 +229,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1219999893281702537
+--- !u!114 &3627906426957825433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,15 +238,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 5548144714474204762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6a40ecc3169c4548849514be600d7be, type: 3}
+  m_Script: {fileID: 11500000, guid: 328b0a016e5f660408eb005d586f9227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHolding: 0
-  ShrinkOnClick: 0
-  icon: {fileID: 5984996092930556644}
-  start: {x: 0, y: 0, z: 0}
-  joystick: {fileID: 8334832793051036348}
-  joysticktop: {fileID: 1205929243400243965}
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  joystick: {fileID: 6008598727188844386}
+  handle: {fileID: 6904931482920852142}
+--- !u!114 &-1709727301107437433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5548144714474204762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 559656741
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &8334832793051036348
 GameObject:
   m_ObjectHideFlags: 0
