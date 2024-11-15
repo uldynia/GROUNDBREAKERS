@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 289770427}
   - component: {fileID: 289770429}
   m_Layer: 0
-  m_Name: Image
+  m_Name: LoadoutMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -433,7 +433,19 @@ MonoBehaviour:
   p_clickEffect: {fileID: 7526701767135343867, guid: 12ab7bedfab7bbe469751a3995d4125c, type: 3}
   onClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9211639940448178625}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: open
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &366294575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,6 +2212,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afd2a236afc697a409e2aa0e649f7e13, type: 3}
+--- !u!95 &9211639940448178625 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4646798112239179967, guid: afd2a236afc697a409e2aa0e649f7e13, type: 3}
+  m_PrefabInstance: {fileID: 672373345771408974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
