@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1709727301107437433, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
       propertyPath: _assetId
-      value: 2491142041
+      value: 633861473
       objectReference: {fileID: 0}
     - target: {fileID: 2746697522171188474, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
       propertyPath: m_Pivot.x
@@ -94,10 +94,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5548144714474204762, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
       propertyPath: m_Name
-      value: PunchTool
+      value: LauncherTool
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3627906426957825433, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5548144714474204762, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6533540238275293714}
   m_SourcePrefab: {fileID: 100100000, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
+--- !u!1 &5738026128055186343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5548144714474204762, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
+  m_PrefabInstance: {fileID: 243027684782874109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-6533540238275293714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5738026128055186343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98abcb4ca9767f04ba4b70f5349550f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  Name: Jump Pad
+  description: 'Deploys a jump pad. Cooldown: 30 seconds'
+  joystick: {fileID: 5781985104023065247}
+  handle: {fileID: 6668800796277671763}
+--- !u!114 &5781985104023065247 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6008598727188844386, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
+  m_PrefabInstance: {fileID: 243027684782874109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6668800796277671763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6904931482920852142, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
+  m_PrefabInstance: {fileID: 243027684782874109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] GameObject p_clickEffect;
-    public UnityEvent onClick;
+    public UnityEvent onClick = new();
     Vector3 targetScale = Vector3.one;
     public void OnPointerClick(PointerEventData eventData)
     {

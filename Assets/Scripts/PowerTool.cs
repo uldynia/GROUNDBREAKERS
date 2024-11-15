@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PowerTool : NetworkBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    public string Name, description;
     bool isHolding;
     [SerializeField] Image joystick, handle;
     Vector2 startingPoint;
