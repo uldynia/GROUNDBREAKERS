@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 246c6eefd2c4c7141a99601e819f63b8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - p_clickEffect: {fileID: 7526701767135343867, guid: 12ab7bedfab7bbe469751a3995d4125c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
