@@ -22,9 +22,13 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     // Update is called once per frame
     void Update()
     {
-        playerCountText.text = $"Players Ready: {playerReady}/{playerCount}\nStarting in: {(int)startCooldown}";
-        if (PlayerController.instance == null || !PlayerController.instance.isServer || Takama.instance != null) return;
+        if (PlayerController.instance == null || !PlayerController.instance.isServer || Takama.instance != null)
+        {
+            playerCountText.text = "";
+            return;
+        }
 
+        playerCountText.text = $"Players Ready: {playerReady}/{playerCount}\nStarting in: {(int)startCooldown}";
         playerCount = NetworkServer.connections.Count;
         if(playerCount == playerReady)
         {
@@ -33,7 +37,7 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
             {
                 var takama = Instantiate(p_takama);
                 NetworkServer.Spawn(takama.gameObject);
-                takama.Init(1000, 300, 30);
+                takama.Init(500, 500, 30);
             }
         }
         else
