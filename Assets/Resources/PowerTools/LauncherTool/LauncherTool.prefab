@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LauncherTool
       objectReference: {fileID: 0}
+    - target: {fileID: 5984996092930556644, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3840669754812678891, guid: 765af16c671de4f45bc0bd7b24c550e2, type: 3}
     m_RemovedComponents:
     - {fileID: 3627906426957825433, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
     m_RemovedGameObjects: []

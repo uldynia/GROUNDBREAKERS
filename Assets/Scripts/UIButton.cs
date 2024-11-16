@@ -15,9 +15,8 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerDownHandler
         IEnumerator click()
         {
             var clickEffect = Instantiate(p_clickEffect, transform);
-            yield return new WaitForSeconds(0.3f);
             onClick?.Invoke();
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.5f);
             Destroy(clickEffect);
         }
     }

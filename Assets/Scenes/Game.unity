@@ -1193,8 +1193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89f7b40d9d2cf34e9dcf6da356eb08e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerTool1: {fileID: 0}
-  powerTool2: {fileID: 0}
 --- !u!1 &786603451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3223,8 +3221,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: 0}
+  m_CellSize: {x: 40, y: 40}
+  m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!225 &4737067743198626704
