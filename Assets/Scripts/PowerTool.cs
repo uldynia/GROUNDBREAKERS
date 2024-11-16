@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PowerTool : NetworkBehaviour, IPointerDownHandler, IPointerUpHandler
+public class PowerTool : NetworkBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public string Name, description;
     bool isHolding;
@@ -16,21 +16,24 @@ public class PowerTool : NetworkBehaviour, IPointerDownHandler, IPointerUpHandle
         startingPoint = eventData.position;
         joystick.transform.position = eventData.position;
     }
-
+    public void OnDrag(PointerEventData eventData)
+    {
+        delta = eventData.position - startingPoint;
+        deltaNormalized = delta.normalized;
+    }
     public void OnPointerUp(PointerEventData eventData)
     {
         isHolding = false;
-        delta = eventData.delta - startingPoint;
-        deltaNormalized = delta.normalized;
     }
     private void Update()
     {
         joystick.gameObject.SetActive(isHolding);
         if (isHolding)
         {
-            handle.transform.localPosition = Vector3.ClampMagnitude(delta, 100);
+            handle.transform.localPosition = Vector3.ClampMagnitude(delta, 50);
         }
         update();
     }
     protected virtual void update() { }
+
 }
