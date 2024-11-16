@@ -133,6 +133,7 @@ MonoBehaviour:
   description: 'Deploys a jump pad. Cooldown: 30 seconds'
   joystick: {fileID: 5781985104023065247}
   handle: {fileID: 6668800796277671763}
+  p_launcher: {fileID: 4306137748413243928, guid: 9076713af49beb9479c406b8b9b04e1d, type: 3}
 --- !u!114 &5781985104023065247 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6008598727188844386, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}

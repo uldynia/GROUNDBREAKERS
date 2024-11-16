@@ -244,6 +244,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  Name: 
+  description: 
   joystick: {fileID: 6008598727188844386}
   handle: {fileID: 6904931482920852142}
 --- !u!114 &-1709727301107437433

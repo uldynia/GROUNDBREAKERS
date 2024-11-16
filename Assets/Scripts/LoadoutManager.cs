@@ -71,9 +71,9 @@ public class LoadoutManager : MonoBehaviour
         }
         foreach(var slot in slots)
         {
-            if (slot.powerTool == null) continue;
+            if (slot.powerTool == null) return;
             var s = Instantiate(slot.powerTool.gameObject, powerToolsTransform);
-            NetworkServer.Spawn(s);
+            s.GetComponent<PowerTool>().Init();
 
         }
     }

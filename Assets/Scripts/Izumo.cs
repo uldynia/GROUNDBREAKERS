@@ -47,7 +47,7 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     }
     void connect(int oldvar, int newvar)
     {
-        Debug.Log("Player connected!");
+        //Debug.Log("Player connected!");
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

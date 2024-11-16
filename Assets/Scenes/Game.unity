@@ -934,7 +934,6 @@ GameObject:
   - component: {fileID: 619394806}
   - component: {fileID: 619394809}
   - component: {fileID: 619394808}
-  - component: {fileID: 619394810}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1040,6 +1039,9 @@ MonoBehaviour:
   playerSpawnMethod: 1
   spawnPrefabs:
   - {fileID: 4306137748413243928, guid: 9076713af49beb9479c406b8b9b04e1d, type: 3}
+  - {fileID: 5738026128055186343, guid: c13da764447a68f41bc7646264d16aee, type: 3}
+  - {fileID: 5548144714474204762, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
+  - {fileID: 5738026128055186343, guid: 0c7298b4d71ea344ebc3f42fd843b914, type: 3}
   - {fileID: 276369140244288179, guid: e9daca23b724d2443bd874b02ea58822, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
@@ -1181,18 +1183,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   secretHandshake: 6744610794898161525
---- !u!114 &619394810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619394800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89f7b40d9d2cf34e9dcf6da356eb08e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &786603451
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,18 +10,23 @@ public class PowerTool : NetworkBehaviour, IPointerDownHandler, IPointerUpHandle
     [SerializeField] Image joystick, handle;
     Vector2 startingPoint;
     protected Vector3 delta, deltaNormalized;
-    public void OnPointerDown(PointerEventData eventData)
+    [Command]
+    public void Init()
+    {
+        NetworkServer.Spawn(gameObject);
+    }
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
         isHolding = true;
         startingPoint = eventData.position;
         joystick.transform.position = eventData.position;
     }
-    public void OnDrag(PointerEventData eventData)
+    public virtual void OnDrag(PointerEventData eventData)
     {
         delta = eventData.position - startingPoint;
         deltaNormalized = delta.normalized;
     }
-    public void OnPointerUp(PointerEventData eventData)
+    public virtual void OnPointerUp(PointerEventData eventData)
     {
         isHolding = false;
     }
