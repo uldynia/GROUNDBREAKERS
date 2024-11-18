@@ -1,12 +1,13 @@
 using Mirror;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadoutManager : MonoBehaviour
+public class LoadoutManager : NetworkBehaviour
 {
     public static LoadoutManager instance;
-    public GameObject p_loadoutIcon;
+    public GameObject p_loadoutIcon, p_powerToolButton;
     [System.Serializable] public class Slot
     {
         public UIButton button;
@@ -15,17 +16,17 @@ public class LoadoutManager : MonoBehaviour
     public Slot[] slots;
     Slot selectedSlot;
     public CanvasGroup loadoutlist;
-    PowerTool[] powertools;
+    Dictionary<string, PowerTool> powertools = new();
     public Transform powerToolsTransform;
     [SerializeField] TextMeshProUGUI selectedToolName, selectedToolDescription;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         instance = this;
-        powertools = Resources.LoadAll<PowerTool>("PowerTools");
-        foreach(var tool in powertools) {
+        foreach(var tool in Resources.LoadAll<PowerTool>("PowerTools")) {
+            powertools.Add(tool.name, tool);
             var loadoutIcon = Instantiate(p_loadoutIcon, loadoutlist.transform);
-            loadoutIcon.GetComponent<Image>().sprite = tool.transform.GetChild(0).GetComponent<Image>().sprite;
+            loadoutIcon.GetComponent<Image>().sprite = tool.icon;
             loadoutIcon.GetComponent<UIButton>().onClick.AddListener(() => { SelectTool(tool); });
         }
     }
@@ -51,14 +52,14 @@ public class LoadoutManager : MonoBehaviour
     }
     void SelectTool(PowerTool tool)
     {
-        selectedToolName.text = tool.Name;
+        selectedToolName.text = tool.name;
         selectedToolDescription.text = tool.description;
 
         foreach(var slot in slots)
         {
             if (tool == slot.powerTool) return;
         }
-        selectedSlot.button.transform.GetChild(0).GetComponent<Image>().sprite = tool.transform.GetChild(0).GetComponent<Image>().sprite;
+        selectedSlot.button.transform.GetChild(0).GetComponent<Image>().sprite = tool.icon;
         selectedSlot.powerTool = tool;
         SetTools();
     }
@@ -72,10 +73,23 @@ public class LoadoutManager : MonoBehaviour
         foreach(var slot in slots)
         {
             if (slot.powerTool == null) return;
-            var s = Instantiate(slot.powerTool.gameObject, powerToolsTransform);
-            s.GetComponent<PowerTool>().Init();
-
+            CreateSkillObject(slot.powerTool.name);
         }
+    }
+    [Command(requiresAuthority =false)]
+    public void CreateSkillObject(string name, NetworkConnectionToClient client = null)
+    {
+        var go = Instantiate(powertools[name].gameObject);
+        NetworkServer.Spawn(go);
+        var identity = go.GetComponent<NetworkIdentity>();
+        identity.AssignClientAuthority(client);
+        CreateButton(client, identity.netId);
+    }
+    [TargetRpc]
+    public void CreateButton(NetworkConnectionToClient client, uint id)
+    {
+        var button = Instantiate(p_powerToolButton, powerToolsTransform);
+        button.GetComponent<PowerToolButton>().Init(NetworkServer.spawned[id].GetComponent<PowerTool>());
     }
     // Update is called once per frame
     void Update()

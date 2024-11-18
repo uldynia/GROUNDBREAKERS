@@ -7,24 +7,22 @@ public class LauncherTool : PowerTool
     [SerializeField] GameObject p_launcher;
 
     [SyncVar] float cooldown;
-    protected override void update()
+    private void Update()
     {
-        base.update();
         cooldown += Time.deltaTime;
     }
-    public override void OnPointerUp(PointerEventData eventData)
+    public override void OnRelease()
     {
-        base.OnPointerUp(eventData);
+        base.OnRelease();
         Launcher();
     }
     [Command]
     void Launcher()
     {
-
         if (cooldown < 10) return;
         cooldown = 0;
-        var launcher = Instantiate(p_launcher, PlayerController.instance.transform.position + deltaNormalized, Quaternion.identity);
-        launcher.GetComponent<Rigidbody2D>().linearVelocity = deltaNormalized * 10;
+        var launcher = Instantiate(p_launcher, PlayerController.instance.transform.position + button.deltaNormalized, Quaternion.identity);
+        launcher.GetComponent<Rigidbody2D>().linearVelocity = button.deltaNormalized * 10;
         NetworkServer.Spawn(launcher);
     }
 }
