@@ -4,8 +4,6 @@ using UnityEngine.EventSystems;
 
 public class LauncherTool : PowerTool
 {
-    [SerializeField] GameObject p_launcher;
-
     [SyncVar] float cooldown;
     private void Update()
     {
@@ -14,15 +12,16 @@ public class LauncherTool : PowerTool
     public override void OnRelease()
     {
         base.OnRelease();
-        Launcher();
+        Launcher(button.deltaNormalized, PlayerController.instance.transform.position);
     }
     [Command]
-    void Launcher()
+    void Launcher(Vector3 delta, Vector3 pos)
     {
         if (cooldown < 10) return;
         cooldown = 0;
-        var launcher = Instantiate(p_launcher, PlayerController.instance.transform.position + button.deltaNormalized, Quaternion.identity);
-        launcher.GetComponent<Rigidbody2D>().linearVelocity = button.deltaNormalized * 10;
+        GameObject jumpPad = Resources.Load<GameObject>("PowerTools/LauncherTool/JumpPad");
+        var launcher = Instantiate(jumpPad, pos + delta, Quaternion.identity);
+        launcher.GetComponent<Rigidbody2D>().linearVelocity = delta * 10;
         NetworkServer.Spawn(launcher);
     }
 }

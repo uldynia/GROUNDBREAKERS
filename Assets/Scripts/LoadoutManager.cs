@@ -23,12 +23,23 @@ public class LoadoutManager : NetworkBehaviour
     void Start()
     {
         instance = this;
-        foreach(var tool in Resources.LoadAll<PowerTool>("PowerTools")) {
+    }
+    // Update is called once per frame
+    bool init = false;
+    void Update()
+    {
+        loadoutlist.alpha = selectedSlot == null ? 0 : 1;
+
+        if (init == true || PlayerController.instance == null) return;
+        init = true;
+        foreach (var tool in PlayerController.instance.GetComponents<PowerTool>())
+        {
             powertools.Add(tool.name, tool);
             var loadoutIcon = Instantiate(p_loadoutIcon, loadoutlist.transform);
             loadoutIcon.GetComponent<Image>().sprite = tool.icon;
             loadoutIcon.GetComponent<UIButton>().onClick.AddListener(() => { SelectTool(tool); });
         }
+
     }
     public void Close()
     {
@@ -73,27 +84,8 @@ public class LoadoutManager : NetworkBehaviour
         foreach(var slot in slots)
         {
             if (slot.powerTool == null) return;
-            CreateSkillObject(slot.powerTool.name);
+            var button = Instantiate(p_powerToolButton, powerToolsTransform);
+            button.GetComponent<PowerToolButton>().Init(slot.powerTool);
         }
-    }
-    [Command(requiresAuthority =false)]
-    public void CreateSkillObject(string name, NetworkConnectionToClient client = null)
-    {
-        var go = Instantiate(powertools[name].gameObject);
-        NetworkServer.Spawn(go);
-        var identity = go.GetComponent<NetworkIdentity>();
-        identity.AssignClientAuthority(client);
-        CreateButton(client, identity.netId);
-    }
-    [TargetRpc]
-    public void CreateButton(NetworkConnectionToClient client, uint id)
-    {
-        var button = Instantiate(p_powerToolButton, powerToolsTransform);
-        button.GetComponent<PowerToolButton>().Init(NetworkServer.spawned[id].GetComponent<PowerTool>());
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        loadoutlist.alpha = selectedSlot == null ? 0 : 1;
     }
 }

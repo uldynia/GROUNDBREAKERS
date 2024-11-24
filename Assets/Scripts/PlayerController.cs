@@ -16,6 +16,7 @@ public class PlayerController : NetworkBehaviour
         ControlsManager.instance.jumpButton.onDown += Jump;
         if (isLocalPlayer)
         {
+            name = "LocalPlayer";
             instance = this;
         }
     }
