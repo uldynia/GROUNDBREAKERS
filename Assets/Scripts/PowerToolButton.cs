@@ -6,7 +6,7 @@ public class PowerToolButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 {
     PowerTool tool;
 
-    bool isHolding;
+    public bool isHolding;
     [SerializeField] Image joystick, handle, icon;
     Vector2 startingPoint;
     public Vector3 delta, deltaNormalized;

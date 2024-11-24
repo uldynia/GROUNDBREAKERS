@@ -34,7 +34,7 @@ public class LoadoutManager : NetworkBehaviour
         init = true;
         foreach (var tool in PlayerController.instance.GetComponents<PowerTool>())
         {
-            powertools.Add(tool.name, tool);
+            powertools.Add(tool.GetType().ToString(), tool);
             var loadoutIcon = Instantiate(p_loadoutIcon, loadoutlist.transform);
             loadoutIcon.GetComponent<Image>().sprite = tool.icon;
             loadoutIcon.GetComponent<UIButton>().onClick.AddListener(() => { SelectTool(tool); });
@@ -55,7 +55,7 @@ public class LoadoutManager : NetworkBehaviour
                 selectedSlot = slot;
                 if(slot.powerTool != null)
                 {
-                    selectedToolName.text = slot.powerTool.name;
+                    selectedToolName.text = slot.powerTool.GetType().ToString();
                     selectedToolDescription.text = slot.powerTool.description;
                 }
             }
@@ -79,7 +79,7 @@ public class LoadoutManager : NetworkBehaviour
     {
         foreach(Transform trf in powerToolsTransform)
         {
-            NetworkServer.Destroy(trf.gameObject);
+            Destroy(trf.gameObject);
         }
         foreach(var slot in slots)
         {
