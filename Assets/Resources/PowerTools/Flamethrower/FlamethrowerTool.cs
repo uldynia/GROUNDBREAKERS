@@ -1,5 +1,4 @@
 using Mirror;
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +6,28 @@ public class FlamethrowerTool : PowerTool
 {
     [SyncVar] public Vector3 position;
     [SyncVar] public Vector3 delta;
-
+    ParticleSystem ps;
+    private void Start()
+    {
+        ps = GetComponentInChildren<ParticleSystem>();
+    }
     void Update()
     {
+        if (delta != Vector3.zero)
+        {
+            var swag = ps.emission;
+            swag.rateOverTime = 50;
+            var swag2 = ps.shape;
+            swag2.rotation = new Vector3(0, 0,
+                Vector2.SignedAngle(Vector2.right, delta)
+            ) ;
+        }
+        else
+        {
+            var swag = ps.emission;
+            swag.rateOverTime = 0;
+        }
+
         if (button != null)
         {
             position = PlayerController.instance.transform.position;
