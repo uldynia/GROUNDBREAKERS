@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : NetworkBehaviour
 {
     public static PlayerController instance;
+    [SyncVar] public string username = "user";
     public Rigidbody2D rb;
     SpriteRenderer sr;
     bool canJump = true;
