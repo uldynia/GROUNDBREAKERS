@@ -34,12 +34,15 @@ public class LoadoutManager : NetworkBehaviour
         init = true;
         foreach (var tool in PlayerController.instance.GetComponents<PowerTool>())
         {
+            if (!tool.selectable) continue;
             powertools.Add(tool.GetType().ToString(), tool);
             var loadoutIcon = Instantiate(p_loadoutIcon, loadoutlist.transform);
             loadoutIcon.GetComponent<Image>().sprite = tool.icon;
             loadoutIcon.GetComponent<UIButton>().onClick.AddListener(() => { SelectTool(tool); });
         }
-
+        SelectSlot(slots[0].button);
+        SelectTool(PlayerController.instance.GetComponent<PunchTool>());
+        selectedSlot = null;
     }
     public void Close()
     {
@@ -69,6 +72,7 @@ public class LoadoutManager : NetworkBehaviour
         foreach(var slot in slots)
         {
             if (tool == slot.powerTool) return;
+            if (tool != null) if (!tool.selectable) continue;
         }
         selectedSlot.button.transform.GetChild(0).GetComponent<Image>().sprite = tool.icon;
         selectedSlot.powerTool = tool;
