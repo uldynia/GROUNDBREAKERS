@@ -1040,6 +1040,7 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 4306137748413243928, guid: 9076713af49beb9479c406b8b9b04e1d, type: 3}
   - {fileID: 276369140244288179, guid: e9daca23b724d2443bd874b02ea58822, type: 3}
+  - {fileID: 3686199156214948375, guid: dd068f276cf751442b9a0e4c81e20302, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -3578,6 +3579,8 @@ MonoBehaviour:
   p_loadoutIcon: {fileID: 9099904000564552172, guid: 9bbe408a8f8312f47955989806f0e4cd, type: 3}
   p_powerToolButton: {fileID: 5548144714474204762, guid: 7cd317f1aa1e12047aa1df36b0b35379, type: 3}
   slots:
+  - button: {fileID: 5842339000089231500}
+    powerTool: {fileID: 0}
   - button: {fileID: 1412762592}
     powerTool: {fileID: 0}
   - button: {fileID: 1949857203}
