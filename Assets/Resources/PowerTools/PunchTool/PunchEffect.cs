@@ -17,8 +17,9 @@ public class PunchEffect : NetworkBehaviour
         if(isServer)
         {
             lifespan += Time.deltaTime;
-            rb.MovePosition(transform.position + direction * Time.deltaTime * 10);
-            if (lifespan > 0.3f) NetworkServer.Destroy(gameObject);
+            //rb.MovePosition(transform.position + direction * Time.deltaTime * 10);
+            transform.position += direction * Time.deltaTime * 25;
+            if (lifespan > 0.15f) NetworkServer.Destroy(gameObject);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,6 +29,9 @@ public class PunchEffect : NetworkBehaviour
         {
             Takama.instance?.SetTile(Vector3Int.RoundToInt(transform.position + direction), 0);
             NetworkServer.Destroy(gameObject);
+        }
+        else if (collision.CompareTag("Enemy")) {
+            collision.GetComponent<Entity>()?.Damage(5);
         }
     }
 }
