@@ -55,12 +55,13 @@ public class LoadoutManager : NetworkBehaviour
         {
             if(slot.button == button)
             {
-                selectedSlot = slot;
                 if(slot.powerTool != null)
                 {
                     selectedToolName.text = slot.powerTool.GetType().ToString();
                     selectedToolDescription.text = slot.powerTool.description;
                 }
+                if(button == slots[0]?.button && slots[0].powerTool != null) return;
+                selectedSlot = slot;
             }
         }
     }
