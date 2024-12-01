@@ -53,6 +53,7 @@ MonoBehaviour:
   tiles:
   - {fileID: 11400000, guid: b2ddc67a42f741c40a82bca12ebc1cba, type: 2}
   - {fileID: 11400000, guid: d960c80bbd8b8ae4c8285576b73182e7, type: 2}
+  p_shadow: {fileID: 4058891824965133008, guid: f9932f3d3c5048b43b1eb2df1a03b94b, type: 3}
 --- !u!114 &3447519878862922
 MonoBehaviour:
   m_ObjectHideFlags: 0

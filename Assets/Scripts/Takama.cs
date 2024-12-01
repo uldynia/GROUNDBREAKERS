@@ -8,8 +8,8 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     public static Takama instance;
     Tilemap tilemap;
     [SerializeField] List<TileBase> tiles = new();
-
     [SyncVar] Vector3Int spawnpoint;
+    [SerializeField] GameObject p_shadow;
     private void Start()
     {
         Takama.instance = this;
@@ -31,6 +31,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
                 if(i % 5 == 0)
                 {
                     GenerateCircle(point.x, point.y, 15);
+                    NetworkServer.Spawn(Instantiate(p_shadow, new Vector3(point.x, point.y), Quaternion.identity)); 
                 }
             }
             TeleportToSpawn();
@@ -38,7 +39,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     }
     public Vector3Int DrawRandomLine(Vector3Int currentPoint, int length, int thickness, int id)
     {
-        float randomAngle = Random.Range(-15f, 15f);
+        float randomAngle = Random.Range(-30f, 30f);
         if (Random.Range(0, 2) == 1) randomAngle -= 60;
         float radians = randomAngle * Mathf.Deg2Rad;
 

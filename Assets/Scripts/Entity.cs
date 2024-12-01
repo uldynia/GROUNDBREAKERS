@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Entity : NetworkBehaviour
 {
-    [SyncVar(hook = "dmg")] public float health;
+    [SyncVar(hook = nameof(dmg))] public float health;
     public float maxHealth = 100;
     public enum TYPE {
         PLAYER, ENEMY
