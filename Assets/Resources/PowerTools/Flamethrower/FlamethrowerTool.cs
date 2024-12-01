@@ -40,7 +40,6 @@ public class FlamethrowerTool : PowerTool
             var objects = FindObjectsByType<FlamethrowerTool>(FindObjectsSortMode.None);
             foreach (var tool in objects)
             {
-                Debug.Log($"{tool.position}, {tool.delta}");
                 if (tool.delta != Vector3.zero)
                 {
                     foreach(var collider in Physics2D.RaycastAll(tool.position, tool.delta, 10))
