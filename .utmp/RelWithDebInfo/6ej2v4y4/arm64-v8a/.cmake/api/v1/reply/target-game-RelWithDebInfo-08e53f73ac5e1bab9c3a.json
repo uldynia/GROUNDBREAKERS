@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "C:/Users/XAV/Desktop/GROUNDBREAKERS/Library/PramData/AndroidApplicationController/Cache/org.uldynia.GROUNDBREAKERS/gradle-project/unityLibrary/build/intermediates/cxx/Debug/3366s1c3/obj/arm64-v8a/libgame.so"
+			"path" : "C:/Users/XAV/Desktop/GROUNDBREAKERS/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6ej2v4y4/obj/arm64-v8a/libgame.so"
 		}
 	],
 	"backtrace" : 1,
@@ -56,7 +56,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -fexceptions -frtti -stdlib=libc++ -Wall -Wextra -pedantic -Werror -g  -fno-limit-debug-info -fPIC"
+					"fragment" : "-DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -fexceptions -frtti -stdlib=libc++ -Wall -Wextra -pedantic -Werror -O2 -g -DNDEBUG -fPIC"
 				}
 			],
 			"defines" : 
@@ -73,7 +73,7 @@
 			[
 				{
 					"backtrace" : 4,
-					"path" : "C:/Users/XAV/Desktop/GROUNDBREAKERS/Library/PramData/AndroidApplicationController/Cache/org.uldynia.GROUNDBREAKERS/gradle-project/unityLibrary/src/main/cpp/GameActivity"
+					"path" : "C:/Users/XAV/Desktop/GROUNDBREAKERS/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity"
 				},
 				{
 					"backtrace" : 2,
