@@ -8,7 +8,7 @@ public class PlayerController : NetworkBehaviour
     public Rigidbody2D rb;
     SpriteRenderer sr;
     bool canJump = true;
-     public float cameraTargetSize = 10;
+    public float cameraTargetSize = 10;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,26 +31,21 @@ public class PlayerController : NetworkBehaviour
         if ((canJump))
         {
             rb.AddForce(Vector2.down * 15);
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 Jump();
             }
 
             transform.position += new Vector3(ControlsManager.instance.horizontal * Time.deltaTime * 10, 0);
-            
+
         }
         if (Vector3.SqrMagnitude(Camera.main.transform.position - transform.position) > 20) Camera.main.transform.position = transform.position - new Vector3(0, 0, 10);
         Camera.main.transform.position += ((transform.position - new Vector3(0, 0, 10) - Camera.main.transform.position)) * Time.fixedDeltaTime * 5;
-        Camera.main.orthographicSize += Mathf.Clamp((cameraTargetSize - Camera.main.orthographicSize), -0.5f, 0.5f)  * Time.deltaTime * 10;
+        Camera.main.orthographicSize += Mathf.Clamp((cameraTargetSize - Camera.main.orthographicSize), -0.5f, 0.5f) * Time.deltaTime * 10;
     }
 
     public void Jump()
     {
-        rb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
-    }
-
-    public void Punch(Vector3 delta)
-    {
-        Vector3Int blockaffected = Vector3Int.RoundToInt(delta.normalized + transform.position);
-        Takama.instance.SetTile(blockaffected, 0);
+        rb.linearVelocityY = 15;
     }
 }
