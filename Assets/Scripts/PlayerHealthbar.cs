@@ -8,11 +8,15 @@ public class PlayerHealthbar : MonoBehaviour
     GameObject healthbar;
     Image foreground;
     Entity e;
+    bool init = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Update()
     {
+        if (init || PlayerController.instance == null) return;
+        init = true;
         healthbar = Instantiate(p_healthbar, GameObject.Find("PlayerHealthbarGroup").transform);
-        healthbar.GetComponentInChildren<TextMeshProUGUI>().text = PlayerController.instance.username;
+        var tmpro = healthbar.GetComponentInChildren<TextMeshProUGUI>();
+        tmpro.text = PlayerController.instance.username;
         foreground = healthbar.transform.Find("background").GetChild(0).GetComponent<Image>();
         e = GetComponent<Entity>();
         e.onDamage += OnDamage;
