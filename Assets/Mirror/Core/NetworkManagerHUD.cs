@@ -1,3 +1,5 @@
+using System.Net;
+using System.Net.Sockets;
 using UnityEngine;
 
 namespace Mirror
@@ -18,14 +20,24 @@ namespace Mirror
         {
             manager = GetComponent<NetworkManager>();
         }
-
+        public static string ipAddress;
+        private void Start()
+        {
+            foreach (var ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    ipAddress = ip.ToString();
+                }
+            }
+        }
         void OnGUI()
         {
             // If this width is changed, also change offsetX in GUIConsole::OnGUI
             int width = 300;
 
             GUILayout.BeginArea(new Rect(10 + offsetX, 40 + offsetY, width, 9999));
-
+            GUILayout.Label($"IP Address: {ipAddress}");
             if (!NetworkClient.isConnected && !NetworkServer.active)
                 StartButtons();
             else
