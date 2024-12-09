@@ -9,9 +9,13 @@ public class MenuManager : MonoBehaviour
     [SerializeField] TMP_InputField usernameField;
     void Start()
     {
-        usernameField.onValueChanged.AddListener((string name) =>
+        if(PlayerPrefs.HasKey("username")) {
+            usernameField.text = PlayerPrefs.GetString("username");
+        }
+        usernameField.onValueChanged.AddListener((string _name) =>
         {
-            PlayerController.menuUsername = name;
+            PlayerController.menuUsername = _name;
+            PlayerPrefs.SetString("username", _name);
         });
         if (Application.platform == RuntimePlatform.WindowsServer || Application.platform == RuntimePlatform.LinuxServer)
             StartCoroutine(read());
