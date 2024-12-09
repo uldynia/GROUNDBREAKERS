@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,17 +10,19 @@ public class PlayerHealthbar : MonoBehaviour
     Image foreground;
     Entity e;
     bool init = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Update()
-    {
-        if (init || PlayerController.instance == null) return;
-        init = true;
-        healthbar = Instantiate(p_healthbar, GameObject.Find("PlayerHealthbarGroup").transform);
-        var tmpro = healthbar.GetComponentInChildren<TextMeshProUGUI>();
-        tmpro.text = PlayerController.instance.username;
-        foreground = healthbar.transform.Find("background").GetChild(0).GetComponent<Image>();
-        e = GetComponent<Entity>();
-        e.onDamage += OnDamage;
+    TextMeshProUGUI tmpro;
+    void Start() {
+        StartCoroutine(init());
+        IEnumerator init() {
+            yield return new WaitForSeconds(1);
+            while(PlayerController.instance == null) yield return null;
+            healthbar = Instantiate(p_healthbar, GameObject.Find("PlayerHealthbarGroup").transform);
+            tmpro = healthbar.GetComponentInChildren<TextMeshProUGUI>();
+            tmpro.text = GetComponent<PlayerController>().username;
+            foreground = healthbar.transform.Find("background").GetChild(0).GetComponent<Image>();
+            e = GetComponent<Entity>();
+            e.onDamage += OnDamage;
+        }
     }
 
     void OnDamage(float damage)

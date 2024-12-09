@@ -1,9 +1,11 @@
 using Mirror;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class PlayerController : NetworkBehaviour
 {
     public static PlayerController instance;
+    public static string menuUsername;
     [SyncVar] public string username = "user";
     public Rigidbody2D rb;
     SpriteRenderer sr;
@@ -18,8 +20,14 @@ public class PlayerController : NetworkBehaviour
         if (isLocalPlayer)
         {
             name = "LocalPlayer";
+            SetUsername(menuUsername);
             instance = this;
         }
+    }
+    [Command]
+    void SetUsername(string _name)
+    {
+        username = _name;
     }
     [SyncVar] bool isFlipped;
     void Update()
@@ -30,7 +38,6 @@ public class PlayerController : NetworkBehaviour
             isFlipped = (ControlsManager.instance.horizontal > 0);
         if ((canJump))
         {
-            rb.AddForce(Vector2.down * 15);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
@@ -43,7 +50,10 @@ public class PlayerController : NetworkBehaviour
         Camera.main.transform.position += ((transform.position - new Vector3(0, 0, 10) - Camera.main.transform.position)) * Time.fixedDeltaTime * 5;
         Camera.main.orthographicSize += Mathf.Clamp((cameraTargetSize - Camera.main.orthographicSize), -0.5f, 0.5f) * Time.deltaTime * 10;
     }
-
+    void FixedUpdate()
+    {
+        rb.AddForce(Vector2.up * -15);
+    }
     public void Jump()
     {
         rb.linearVelocityY = 15;
