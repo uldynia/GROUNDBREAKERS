@@ -4,6 +4,7 @@ using UnityEngine;
 public class PowerTool : NetworkBehaviour
 {
     public bool selectable = false;
+    public string ToolName;
     public string description;
     public Sprite icon;
     public PowerToolButton button;

@@ -400,7 +400,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   selectable: 0
-  description: 
+  ToolName: Pickaxe
+  description: Your trusty tool that will never leave your side.
   icon: {fileID: 8959118705387878318, guid: 5530f56e3c5a1eb4b8dcef30324dfb8a, type: 3}
   button: {fileID: 0}
   cooldown: 0
@@ -421,7 +422,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   selectable: 1
-  description: 'Deploys a jump pad. Cooldown: 10 seconds'
+  ToolName: Jump Pad
+  description: 'Get some air with a portable jump pad. Cooldown: 10 seconds'
   icon: {fileID: 3840669754812678891, guid: 765af16c671de4f45bc0bd7b24c550e2, type: 3}
   button: {fileID: 0}
   jumpPad: {fileID: 4306137748413243928, guid: 9076713af49beb9479c406b8b9b04e1d, type: 3}
@@ -441,7 +443,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   selectable: 1
-  description: Throws flames in a large radius.
+  ToolName: Flamethrower
+  description: Incinerate the shadows, Trailblaze the path to victory.
   icon: {fileID: 2800715737579632502, guid: 37d1edf97024a804cae64b5e46ee3433, type: 3}
   button: {fileID: 0}
   position: {x: 0, y: 0, z: 0}

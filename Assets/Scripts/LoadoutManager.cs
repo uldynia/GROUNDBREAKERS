@@ -57,7 +57,7 @@ public class LoadoutManager : NetworkBehaviour
             {
                 if(slot.powerTool != null)
                 {
-                    selectedToolName.text = slot.powerTool.GetType().ToString();
+                    selectedToolName.text = slot.powerTool.ToolName;
                     selectedToolDescription.text = slot.powerTool.description;
                 }
                 if(button == slots[0]?.button && slots[0].powerTool != null) return;
@@ -67,7 +67,7 @@ public class LoadoutManager : NetworkBehaviour
     }
     void SelectTool(PowerTool tool)
     {
-        selectedToolName.text = tool.name;
+        selectedToolName.text = tool.ToolName;
         selectedToolDescription.text = tool.description;
 
         foreach(var slot in slots)
