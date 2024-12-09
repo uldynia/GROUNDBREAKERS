@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
     {
         if(PlayerPrefs.HasKey("username")) {
             usernameField.text = PlayerPrefs.GetString("username");
+            PlayerController.menuUsername = usernameField.text;
         }
         usernameField.onValueChanged.AddListener((string _name) =>
         {
