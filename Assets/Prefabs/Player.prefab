@@ -424,6 +424,7 @@ MonoBehaviour:
   description: 'Deploys a jump pad. Cooldown: 10 seconds'
   icon: {fileID: 3840669754812678891, guid: 765af16c671de4f45bc0bd7b24c550e2, type: 3}
   button: {fileID: 0}
+  jumpPad: {fileID: 4306137748413243928, guid: 9076713af49beb9479c406b8b9b04e1d, type: 3}
 --- !u!114 &7443026762245089421
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public class LauncherTool : PowerTool
 {
     [SyncVar] float cooldown;
+    [SerializeField] GameObject jumpPad;
     private void Update()
     {
         cooldown += Time.deltaTime;
@@ -19,7 +20,6 @@ public class LauncherTool : PowerTool
     {
         if (cooldown < 10) return;
         cooldown = 0;
-        GameObject jumpPad = Resources.Load<GameObject>("PowerTools/LauncherTool/JumpPad");
         var launcher = Instantiate(jumpPad, pos + delta, Quaternion.identity);
         launcher.GetComponent<Rigidbody2D>().linearVelocity = delta * 10;
         NetworkServer.Spawn(launcher);
