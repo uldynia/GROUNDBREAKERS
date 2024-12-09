@@ -39,8 +39,8 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     }
     public Vector3Int DrawRandomLine(Vector3Int currentPoint, int length, int thickness, int id)
     {
-        float randomAngle = Random.Range(-30f, 30f);
-        if (Random.Range(0, 2) == 1) randomAngle -= 60;
+        float randomAngle = Random.Range(-60f, 0f);
+        //if (Random.Range(0, 2) == 1) randomAngle -= 60;
         float radians = randomAngle * Mathf.Deg2Rad;
 
         // Calculate the direction vector
