@@ -17,7 +17,7 @@ public class PunchTool : PowerTool
     [Command]
     public void Punch(Vector3 position, Vector3 delta)
     {
-        if(cooldown > 0.2)
+        if(cooldown > 0.2 && delta.sqrMagnitude > 0.1f)
         {
             cooldown = 0;
             var go = Instantiate(p_PunchEffect, position, Quaternion.identity);

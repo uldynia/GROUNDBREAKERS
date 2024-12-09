@@ -27,7 +27,9 @@ public class PunchEffect : NetworkBehaviour
         if (!isServer) return;
         if(collision.CompareTag("Takama"))
         {
-            Takama.instance?.SetTile(Vector3Int.RoundToInt(transform.position + direction), 0);
+            var hit = Physics2D.Raycast(transform.position, direction, 1, LayerMask.GetMask("Terrain"));
+            var destiny = Vector3Int.FloorToInt(new Vector3(hit.point.x, hit.point.y) + direction * 0.5f);
+            Takama.instance?.SetTile(destiny, 0);
             NetworkServer.Destroy(gameObject);
         }
         else if (collision.CompareTag("Enemy")) {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -7341979091332906993}
   - component: {fileID: 3447519878862922}
   - component: {fileID: 2477437617146228529}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Takama
   m_TagString: Takama
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3163363233922185060}
   - component: {fileID: 7708614433316920471}
   - component: {fileID: 2538976812040029148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Takama
   m_Icon: {fileID: 0}
