@@ -6,34 +6,39 @@ using UnityEngine;
 
 public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
 {
-    [SyncVar(hook =nameof(connect))] public int playerCount, playerReady = 0;
+    [SyncVar(hook = nameof(connect))] public int playerCount, playerReady = 0;
     [SyncVar] public float startCooldown;
-
+    [SyncVar] public string countText;
 
     [SerializeField] CanvasGroup lobbyDisplay, loadingScreen;
     [SerializeField] TextMeshProUGUI playerCountText;
     [SerializeField] Takama p_takama;
     private void Start()
     {
-        if (Application.platform == RuntimePlatform.WindowsServer) { 
+        if (Application.platform == RuntimePlatform.WindowsServer)
+        {
             FindFirstObjectByType<NetworkManager>().StartServer();
         }
     }
     // Update is called once per frame
     void Update()
     {
+        playerCountText.text = countText;
+        Debug.Log(countText);
         if (PlayerController.instance == null || !PlayerController.instance.isServer || Takama.instance != null)
         {
             playerCountText.text = "";
             return;
         }
-
-        playerCountText.text = $"Players Ready: {playerReady}/{playerCount}\nStarting in: {(int)startCooldown}";
-        playerCount = NetworkServer.connections.Count;
-        if(playerCount == playerReady)
+        if (isServer)
+        {
+            playerCount = NetworkServer.connections.Count;
+            countText = $"Players Ready: {playerReady}/{playerCount}\nStarting in: {(int)startCooldown}";
+        }
+        if (playerCount == playerReady)
         {
             startCooldown -= Time.deltaTime;
-            if(startCooldown < 0) // start game
+            if (startCooldown < 0) // start game
             {
                 var takama = Instantiate(p_takama);
                 NetworkServer.Spawn(takama.gameObject);
@@ -51,10 +56,10 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") )
+        if (other.CompareTag("Player"))
         {
             PlayerController.instance.cameraTargetSize = 12;
-            if(PlayerController.instance.isServer)
+            if (PlayerController.instance.isServer)
             {
                 playerReady++;
                 Debug.Log($"Player entered the Ready zone. {playerReady}");
@@ -63,7 +68,7 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") )
+        if (other.CompareTag("Player"))
         {
             PlayerController.instance.cameraTargetSize = 10;
             if (PlayerController.instance.isServer)
