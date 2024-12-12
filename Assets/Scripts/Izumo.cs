@@ -24,7 +24,6 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     void Update()
     {
         playerCountText.text = countText;
-        Debug.Log(countText);
         if (PlayerController.instance == null || !PlayerController.instance.isServer || Takama.instance != null)
         {
             playerCountText.text = "";
