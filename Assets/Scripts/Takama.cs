@@ -22,6 +22,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         StartCoroutine(init());
         IEnumerator init()
         {
+            yield return new WaitForSeconds(0.3f);
             for (float x = 0; x < xsize; x++)
             {
                 for (float y = 0; y < ysize; y++)
@@ -136,6 +137,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         if(tile != null)
         if(tile.drop != null) {
             var dropped = Instantiate(p_droppeditem, position, Quaternion.identity).GetComponent<DroppedItem>();
+            NetworkServer.Spawn(dropped.gameObject);
             dropped.Init(tile.drop);
         }
         SetTile(position, 0);

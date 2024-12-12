@@ -6,7 +6,7 @@ public class DroppedItem : NetworkBehaviour
 {
     public Item item;
     [SerializeField] SpriteRenderer image;
-    [Server]
+    [ClientRpc]
     public void Init(Item item) {
         image.sprite = item.sprite;
     }

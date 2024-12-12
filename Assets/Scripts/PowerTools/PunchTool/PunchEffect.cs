@@ -22,6 +22,7 @@ public class PunchEffect : NetworkBehaviour
             if (lifespan > 0.15f) NetworkServer.Destroy(gameObject);
         }
     }
+    [Server]
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isServer) return;
