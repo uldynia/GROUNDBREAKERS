@@ -29,7 +29,7 @@ public class PunchEffect : NetworkBehaviour
         {
             var hit = Physics2D.Raycast(transform.position, direction, 1, LayerMask.GetMask("Terrain"));
             var destiny = Vector3Int.FloorToInt(new Vector3(hit.point.x, hit.point.y) + direction * 0.5f);
-            Takama.instance?.SetTile(destiny, 0);
+            Takama.instance?.BreakTile(destiny);
             NetworkServer.Destroy(gameObject);
         }
         else if (collision.CompareTag("Enemy")) {

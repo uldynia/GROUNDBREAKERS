@@ -7,14 +7,9 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
 {
     public static Takama instance;
     public Tilemap tilemap;
-    [System.Serializable]
-    public class Tile {
-        public TileBase tile;
-
-    }
-    public List<Tile> tiles = new();
+    public List<TilePlus> tiles = new();
     [SyncVar] Vector3Int spawnpoint;
-    [SerializeField] GameObject p_shadow;
+    [SerializeField] GameObject p_shadow, p_droppeditem;
     private void Start()
     {
         Takama.instance = this;
@@ -100,7 +95,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     public void BoxFill(Vector3Int position, int id, int startX, int startY, int endX, int endY)
     {
         //Debug.Log($"Filling box {startX} {startY} to {endX} {endY}");
-        tilemap.BoxFill(position, tiles[id].tile, startX, startY, endX, endY);
+        tilemap.BoxFill(position, tiles[id], startX, startY, endX, endY);
     }
     [ClientRpc]
     public void LineFill(int id, Vector3Int start, Vector3Int end, int thickness)
@@ -122,7 +117,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
                 for (int y = -thickness / 2; y <= thickness / 2; y++)
                 {
                     vectors.Add(new Vector3Int(start.x + x, start.y + y, start.z));
-                    _tiles.Add(tiles[id].tile);
+                    _tiles.Add(tiles[id]);
                 }
             }
 
@@ -137,12 +132,17 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     }
     [Server]
     public void BreakTile(Vector3Int position) {
-        
+        TilePlus tile = (TilePlus)tilemap.GetTile(position);
+        if(tile != null)
+        if(tile.drop != null) {
+            var dropped = Instantiate(p_droppeditem, position, Quaternion.identity).GetComponent<DroppedItem>();
+            dropped.Init(tile.drop);
+        }
         SetTile(position, 0);
     }
     [ClientRpc]
     public void SetTile(Vector3Int position, int id)
     {
-        tilemap.SetTile(position, tiles[id].tile);
+        tilemap.SetTile(position, tiles[id]);
     }
 }

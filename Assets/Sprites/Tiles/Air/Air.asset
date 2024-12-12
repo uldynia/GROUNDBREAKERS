@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed90e898d45acce419bf456ce6494807, type: 3}
-  m_Name: Fuel
+  m_Name: Air
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 2555367647144294544, guid: 038070f6450804e4fa5e0d624f6eb790, type: 3}
+  m_DefaultSprite: {fileID: -3209833726738011397, guid: 4cd0834ca478ef44c89e0edda0d5acff, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules: []
-  drop: {fileID: 11400000, guid: 39f493442182f8f468996741c0eeb2e2, type: 2}
+  drop: {fileID: 0}
