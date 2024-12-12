@@ -22,7 +22,6 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         StartCoroutine(init());
         IEnumerator init()
         {
-            yield return new WaitForSeconds(1);
             BoxFill(Vector3Int.zero, 1, 0, 0, xsize, ysize);
             GenerateCircle(spawnpoint.x, spawnpoint.y, 10);
             for (int i = 0; i < missionlength; i++)
@@ -34,6 +33,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
                     NetworkServer.Spawn(Instantiate(p_shadow, new Vector3(point.x, point.y), Quaternion.identity)); 
                 }
             }
+            yield return new WaitForSeconds(1);
             TeleportToSpawn();
         }
     }
