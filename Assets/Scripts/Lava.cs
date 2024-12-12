@@ -15,7 +15,7 @@ public class Lava : MonoBehaviour
     }
     public void OnCollide(TileBase tileBase)
     {
-        if (tileBase == Takama.instance.tiles[2])
+        if (tileBase == Takama.instance.tiles[2].tile)
         {
             shouldDamage = true;
         }

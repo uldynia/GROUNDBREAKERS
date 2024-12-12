@@ -7,7 +7,12 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
 {
     public static Takama instance;
     public Tilemap tilemap;
-    public List<TileBase> tiles = new();
+    [System.Serializable]
+    public class Tile {
+        public TileBase tile;
+
+    }
+    public List<Tile> tiles = new();
     [SyncVar] Vector3Int spawnpoint;
     [SerializeField] GameObject p_shadow;
     private void Start()
@@ -22,14 +27,20 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         StartCoroutine(init());
         IEnumerator init()
         {
-            for (float x = 0; x < xsize; x++) // generate lava
+            for (float x = 0; x < xsize; x++)
             {
                 for (float y = 0; y < ysize; y++)
                 {
-                    float rX = x/xsize * 20, rY = y/ysize * 20;
-                    var t = Mathf.PerlinNoise(rX, rY);
-                    if(t < 0.2f) {//generate lava
+                    float rX = x/xsize, rY = y/ysize;
+
+                    var t = Mathf.PerlinNoise(rX * 20, rY * 20);//generate lava
+                    if(t < 0.2f) {
                         SetTile(new Vector3Int((int)x,(int)y),2);
+                    }
+
+                    t = Mathf.PerlinNoise(rX * 50, rY * 50);
+                    if(t > 0.8f) {
+                        SetTile(new Vector3Int((int)x,(int)y),3);
                     }
                 }
             }
@@ -89,7 +100,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     public void BoxFill(Vector3Int position, int id, int startX, int startY, int endX, int endY)
     {
         //Debug.Log($"Filling box {startX} {startY} to {endX} {endY}");
-        tilemap.BoxFill(position, tiles[id], startX, startY, endX, endY);
+        tilemap.BoxFill(position, tiles[id].tile, startX, startY, endX, endY);
     }
     [ClientRpc]
     public void LineFill(int id, Vector3Int start, Vector3Int end, int thickness)
@@ -111,7 +122,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
                 for (int y = -thickness / 2; y <= thickness / 2; y++)
                 {
                     vectors.Add(new Vector3Int(start.x + x, start.y + y, start.z));
-                    _tiles.Add(tiles[id]);
+                    _tiles.Add(tiles[id].tile);
                 }
             }
 
@@ -124,10 +135,14 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
 
         tilemap.SetTiles(vectors.ToArray(), _tiles.ToArray());
     }
+    [Server]
+    public void BreakTile(Vector3Int position) {
+        
+        SetTile(position, 0);
+    }
     [ClientRpc]
     public void SetTile(Vector3Int position, int id)
     {
-        //Debug.Log($"Setting tile at {position}");
-        tilemap.SetTile(position, tiles[id]);
+        tilemap.SetTile(position, tiles[id].tile);
     }
 }
