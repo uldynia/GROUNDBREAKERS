@@ -8,6 +8,7 @@ public class TileCollider : MonoBehaviour
     [Server]
     void Update()
     {
+        if(Takama.instance == null) return;
         foreach (var point in GetPoints(Vector3Int.FloorToInt(transform.position)))
         {
             onCollide?.Invoke(Takama.instance.tilemap.GetTile(point));
