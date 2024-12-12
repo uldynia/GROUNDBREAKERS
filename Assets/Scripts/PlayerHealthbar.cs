@@ -22,9 +22,11 @@ public class PlayerHealthbar : MonoBehaviour
             foreground = healthbar.transform.Find("background").GetChild(0).GetComponent<Image>();
             e = GetComponent<Entity>();
             e.onDamage += OnDamage;
+            if(e.isLocalPlayer) {
+                tmpro.text += " (Me)";
+            }
         }
     }
-
     void OnDamage(float damage)
     {
         foreground.fillAmount = Mathf.Clamp(e.health / e.maxHealth, 0, 1);
