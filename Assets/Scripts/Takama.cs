@@ -6,8 +6,8 @@ using UnityEngine.Tilemaps;
 public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
 {
     public static Takama instance;
-    Tilemap tilemap;
-    [SerializeField] List<TileBase> tiles = new();
+    public Tilemap tilemap;
+    public List<TileBase> tiles = new();
     [SyncVar] Vector3Int spawnpoint;
     [SerializeField] GameObject p_shadow;
     private void Start()
@@ -22,9 +22,22 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         StartCoroutine(init());
         IEnumerator init()
         {
+            for (float x = 0; x < xsize; x++) // generate lava
+            {
+                for (float y = 0; y < ysize; y++)
+                {
+                    float rX = x/xsize * 20, rY = y/ysize * 20;
+                    var t = Mathf.PerlinNoise(rX, rY);
+                    if(t < 0.2f) {//generate lava
+                        SetTile(new Vector3Int((int)x,(int)y),2);
+                    }
+                }
+            }
+
             BoxFill(Vector3Int.zero, 1, 0, 0, xsize, ysize);
             GenerateCircle(spawnpoint.x, spawnpoint.y, 10);
-            for (int i = 0; i < missionlength; i++)
+
+            for (int i = 0; i < missionlength; i++) // generate main cavern
             {
                 point = DrawRandomLine(point, 30, 5, 0);
                 if(i % 5 == 0)
@@ -33,6 +46,8 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
                     NetworkServer.Spawn(Instantiate(p_shadow, new Vector3(point.x, point.y), Quaternion.identity)); 
                 }
             }
+
+            
             yield return new WaitForSeconds(1);
             TeleportToSpawn();
         }

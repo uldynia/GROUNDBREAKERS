@@ -337,6 +337,7 @@ MonoBehaviour:
   playerCount: 1
   playerReady: 0
   startCooldown: 0
+  countText: 
   lobbyDisplay: {fileID: 457891204}
   loadingScreen: {fileID: 1927064952}
   playerCountText: {fileID: 1146162255}
@@ -2405,7 +2406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6010303327581349651, guid: 9bbe408a8f8312f47955989806f0e4cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 110
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6010303327581349651, guid: 9bbe408a8f8312f47955989806f0e4cd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3367,7 +3368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6010303327581349651, guid: 9bbe408a8f8312f47955989806f0e4cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -110
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6010303327581349651, guid: 9bbe408a8f8312f47955989806f0e4cd, type: 3}
       propertyPath: m_LocalPosition.y
