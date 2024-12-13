@@ -1,24 +1,31 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Mirror;
 using UnityEngine;
 
 public class Inventory : NetworkBehaviour
 {
-    [SyncVar] public List<InventoryItem> items = new();
+    public readonly SyncList<(Item, int)> items = new();
     [Server]
-    public void AddItem(Item item, int amount) {
+    public void AddItem(Item item, int amount)
+    {
+        if (item == null) throw new NullReferenceException();
         for (int i = 0; i < items.Count; i++)
         {
-            if(items[i].item == item) {
-                items[i].count += amount;
+            if (items[i].Item1 == item)
+            {
+                items[i] = (item, items[i].Item2 + amount);
+                ShowItems(connectionToClient, items.ToList());
                 return;
             }
         }
-        items.Add(new InventoryItem(){count = amount, item = item});
+        items.Add((item, amount));
+        ShowItems(connectionToClient, items.ToList());
     }
-}
-[System.Serializable]
-public class InventoryItem {
-    public int count;
-    public Item item;
+    [TargetRpc]
+    public void ShowItems(NetworkConnectionToClient target, List<(Item, int)> items)
+    {
+        InventoryManager.instance.ShowItems(items);
+    }
 }

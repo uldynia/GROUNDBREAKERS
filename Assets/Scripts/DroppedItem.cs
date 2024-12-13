@@ -6,8 +6,8 @@ public class DroppedItem : NetworkBehaviour
 {
     public Item item;
     [SerializeField] SpriteRenderer image;
-    [ClientRpc]
-    public void Init(Item item) {
+    public void Init(Item _item) {
+        item = _item;
         image.sprite = item.sprite;
     }
     float time;

@@ -137,8 +137,8 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         if(tile != null)
         if(tile.drop != null) {
             var dropped = Instantiate(p_droppeditem, position, Quaternion.identity).GetComponent<DroppedItem>();
-            NetworkServer.Spawn(dropped.gameObject);
             dropped.Init(tile.drop);
+            NetworkServer.Spawn(dropped.gameObject);
         }
         SetTile(position, 0);
     }
