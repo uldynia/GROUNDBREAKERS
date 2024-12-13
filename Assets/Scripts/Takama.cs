@@ -22,7 +22,8 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         StartCoroutine(init());
         IEnumerator init()
         {
-            yield return new WaitForSeconds(0.3f);
+            SetDoor(false);
+            yield return new WaitForSeconds(2f);
             for (float x = 0; x < xsize; x++)
             {
                 for (float y = 0; y < ysize; y++)
@@ -55,10 +56,11 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
             }
 
             
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
             EnvironmentManager.instance.lightLevel = 0.2f;
             EnvironmentManager.instance.background = InventoryManager.instance.items["Cave"];
             TeleportToSpawn();
+            SetDoor(true);
         }
     }
     public Vector3Int DrawRandomLine(Vector3Int currentPoint, int length, int thickness, int id)
@@ -92,6 +94,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
             }
         }
     }
+    [ClientRpc] void SetDoor(bool isOpen) => Loading.instance.SetDoor(isOpen);
     [ClientRpc]
     void TeleportToSpawn() => PlayerController.instance.transform.position = new Vector3(spawnpoint.x, spawnpoint.y);
     [ClientRpc]
