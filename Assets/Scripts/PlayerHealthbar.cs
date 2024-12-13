@@ -9,7 +9,6 @@ public class PlayerHealthbar : MonoBehaviour
     GameObject healthbar;
     Image foreground;
     Entity e;
-    bool init = false;
     TextMeshProUGUI tmpro;
     void Start() {
         StartCoroutine(init());
