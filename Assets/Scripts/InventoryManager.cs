@@ -3,6 +3,8 @@ using UnityEngine;
 using Mirror;
 public class InventoryManager : MonoBehaviour
 {
+    [SerializeField] public Transform InventoryItemDisplayTransform;
+    [SerializeField] public GameObject p_InventoryItemDisplay;
     public static InventoryManager instance;
     public Dictionary<string, Item> items = new();
     void Start() {
@@ -12,7 +14,12 @@ public class InventoryManager : MonoBehaviour
         }
     }
     public void ShowItems(List<(Item, int)> items) {
-        Debug.Log(items);
+        foreach(Transform child in InventoryItemDisplayTransform) {
+            Destroy(child.gameObject);
+        }
+        foreach(var item in items) {
+            Instantiate(p_InventoryItemDisplay, InventoryItemDisplayTransform).GetComponent<InventoryItemDisplay>().Init(item);
+        }
     }
 }
 public static class ItemReadWriter
