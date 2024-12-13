@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 public class DroppedItem : NetworkBehaviour
 {
-    public Item item;
+    [SyncVar] public Item item;
     [SerializeField] SpriteRenderer image;
     public void Init(Item _item) {
         item = _item;
+    }
+    void Start() {
         image.sprite = item.sprite;
     }
     float time;
