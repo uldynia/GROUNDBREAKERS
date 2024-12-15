@@ -1,5 +1,16 @@
 {
   "dependencies": {
+    "com.edgegap.unity-servers-plugin": {
+      "version": "https://github.com/edgegap/edgegap-unity-plugin.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1",
+        "com.unity.toolchain.win-x86_64-linux-x86_64": "2.0.6",
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "hash": "27d1d9f1d8b8ee57a9f93da5e3d9adcbd2c7b87d"
+    },
     "com.stalengd.quickruletileeditor": {
       "version": "https://github.com/stalengd/QuickRuleTileEditor.git",
       "depth": 0,

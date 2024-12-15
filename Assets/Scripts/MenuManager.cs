@@ -18,9 +18,8 @@ public class MenuManager : MonoBehaviour
             PlayerController.menuUsername = _name;
             PlayerPrefs.SetString("username", _name);
         });
-        if (Application.platform == RuntimePlatform.WindowsServer || Application.platform == RuntimePlatform.LinuxServer)
-            StartCoroutine(read());
     }
+    /*
     IEnumerator read()
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, "server.txt");
@@ -51,4 +50,5 @@ public class MenuManager : MonoBehaviour
         }
 
     }
+    */
 }
