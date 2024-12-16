@@ -8,7 +8,7 @@ public class Inventory : NetworkBehaviour
 {
     public readonly SyncList<(Item, int)> items = new();
     [Server]
-    public void AddItem(Item item, int amount)
+    public int AddItem(Item item, int amount)
     {
         if (item == null) throw new NullReferenceException();
         for (int i = 0; i < items.Count; i++)
@@ -17,11 +17,12 @@ public class Inventory : NetworkBehaviour
             {
                 items[i] = (item, items[i].Item2 + amount);
                 ShowItems(connectionToClient, items.ToList());
-                return;
+                return items[i].Item2;
             }
         }
         items.Add((item, amount));
         ShowItems(connectionToClient, items.ToList());
+        return amount;
     }
     [TargetRpc]
     public void ShowItems(NetworkConnectionToClient target, List<(Item, int)> items)

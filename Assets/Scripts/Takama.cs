@@ -9,6 +9,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     public Tilemap tilemap;
     public List<TilePlus> tiles = new();
     [SyncVar] Vector3Int spawnpoint;
+    public List<Vector3Int> points;
     [SerializeField] GameObject p_shadow, p_droppeditem;
     private void Start()
     {
@@ -17,7 +18,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     }
     public void Init(int xsize, int ysize, int missionlength)
     {
-        spawnpoint = new Vector3Int(xsize / 10, ysize / 10 * 9, 0);
+        spawnpoint = new Vector3Int(xsize / 10, ysize / 10 * 8, 0);
         Vector3Int point = spawnpoint;
         StartCoroutine(init());
         IEnumerator init()
@@ -28,16 +29,18 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
             {
                 for (float y = 0; y < ysize; y++)
                 {
-                    float rX = x/xsize, rY = y/ysize;
+                    float rX = x / xsize, rY = y / ysize;
 
                     var t = Mathf.PerlinNoise(rX * 20, rY * 20);//generate lava
-                    if(t < 0.2f) {
-                        SetTile(new Vector3Int((int)x,(int)y),2);
+                    if (t < 0.2f)
+                    {
+                        SetTile(new Vector3Int((int)x, (int)y), 2);
                     }
 
                     t = Mathf.PerlinNoise(rX * 50, rY * 50);
-                    if(t > 0.8f) {
-                        SetTile(new Vector3Int((int)x,(int)y),3);
+                    if (t > 0.8f)
+                    {
+                        SetTile(new Vector3Int((int)x, (int)y), 3);
                     }
                 }
             }
@@ -48,24 +51,28 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
             for (int i = 0; i < missionlength; i++) // generate main cavern
             {
                 point = DrawRandomLine(point, 30, 5, 0);
-                if(i % 5 == 0)
+                if (i % 5 == 0)
                 {
+                    points.Add(point);
                     GenerateCircle(point.x, point.y, 15);
-                    NetworkServer.Spawn(Instantiate(p_shadow, new Vector3(point.x, point.y), Quaternion.identity)); 
+                    NetworkServer.Spawn(Instantiate(p_shadow, new Vector3(point.x, point.y), Quaternion.identity));
                 }
             }
 
-            
+
             yield return new WaitForSeconds(3);
             EnvironmentManager.instance.lightLevel = 0.2f;
             EnvironmentManager.instance.background = InventoryManager.instance.items["Cave"];
             TeleportToSpawn();
             SetDoor(true);
+            MissionsManager.instance.currentMission = Instantiate(MissionsManager.instance.currentMission);
+            NetworkServer.Spawn(MissionsManager.instance.currentMission.gameObject);
+            MissionsManager.instance.currentMission.StartMission();
         }
     }
     public Vector3Int DrawRandomLine(Vector3Int currentPoint, int length, int thickness, int id)
     {
-        float randomAngle = Random.Range(-60f, 0f);
+        float randomAngle = Random.Range(-50f, 20f);
         //if (Random.Range(0, 2) == 1) randomAngle -= 60;
         float radians = randomAngle * Mathf.Deg2Rad;
 
@@ -137,14 +144,16 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         tilemap.SetTiles(vectors.ToArray(), _tiles.ToArray());
     }
     [Server]
-    public void BreakTile(Vector3Int position) {
+    public void BreakTile(Vector3Int position)
+    {
         TilePlus tile = (TilePlus)tilemap.GetTile(position);
-        if(tile != null)
-        if(tile.drop != null) {
-            var dropped = Instantiate(p_droppeditem, position, Quaternion.identity).GetComponent<DroppedItem>();
-            dropped.Init(tile.drop);
-            NetworkServer.Spawn(dropped.gameObject);
-        }
+        if (tile != null)
+            if (tile.drop != null)
+            {
+                var dropped = Instantiate(p_droppeditem, position, Quaternion.identity).GetComponent<DroppedItem>();
+                dropped.Init(tile.drop);
+                NetworkServer.Spawn(dropped.gameObject);
+            }
         SetTile(position, 0);
     }
     [ClientRpc]

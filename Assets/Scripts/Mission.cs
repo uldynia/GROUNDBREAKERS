@@ -7,6 +7,7 @@ public abstract class Mission : NetworkBehaviour
     public string title;
     public Sprite thumbnail;
 
+    public virtual void StartMission(){}
     
 }
 
