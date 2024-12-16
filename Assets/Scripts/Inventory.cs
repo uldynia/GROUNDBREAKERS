@@ -24,6 +24,16 @@ public class Inventory : NetworkBehaviour
         ShowItems(connectionToClient, items.ToList());
         return amount;
     }
+    [Server]
+    public bool RemoveItem(Item item, int amount)
+    {
+        if (item == null) throw new NullReferenceException();
+        var i = items.FindIndex(item => item.Item1);
+        if (items[i].Item2 - amount < 0) return false;
+        items[i] = (items[i].Item1, items[i].Item2 - amount);
+        ShowItems(connectionToClient, items.ToList());
+        return true;
+    }
     [TargetRpc]
     public void ShowItems(NetworkConnectionToClient target, List<(Item, int)> items)
     {

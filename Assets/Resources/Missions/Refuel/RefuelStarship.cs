@@ -12,7 +12,7 @@ public class RefuelStarship : Mission
         base.StartMission();
         instance = this;
         MissionsManager.instance.headerText = "Head to the Starship.";
-        transform.position = Physics2D.Raycast(new Vector2(Takama.instance.points[3].x, Takama.instance.points[3].y), Vector2.down).point + Vector2.up * 10f;
+        transform.position = Physics2D.Raycast(new Vector2(Takama.instance.points[2].x, Takama.instance.points[2].y), Vector2.down).point + Vector2.up * 10f;
     }
     public bool found;
     [Server]
@@ -53,8 +53,13 @@ public class RefuelStarship : Mission
         Inventory inv;
         foreach (NetworkIdentity netIdentity in tmp)
         {
-            if(netIdentity.TryGetComponent<Inventory>(out inv)) {
-                Debug.Log(inv);
+            if (netIdentity.TryGetComponent<Inventory>(out inv))
+            {
+                if (inv.RemoveItem(InventoryManager.instance.items["Fuel"], 1))
+                {
+                    progress += 1;
+                    MissionsManager.instance.headerText = $"Current progress: {progress} / 150";
+                }
                 return;
             }
         }
