@@ -35,12 +35,10 @@ public static class ItemReadWriter
     }
 
     public static void WriteInventoryItem(this NetworkWriter writer, (Item, int) value) {
-        writer.Write<string>(value.Item1.name);
+        writer.Write<Item>(value.Item1);
         writer.Write<int>(value.Item2);
     }
     public static (Item, int) ReadInventoryItem(this NetworkReader reader) {
-        var i = (InventoryManager.instance.items[reader.Read<string>()], reader.Read<int>());
-        Debug.Log(i);
-        return i;
+        return (reader.Read<Item>(), reader.Read<int>());
     }
 }
