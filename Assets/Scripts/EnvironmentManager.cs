@@ -16,9 +16,9 @@ public class EnvironmentManager : NetworkBehaviour
     void ChangeBackground(Item oldBackground, Item newBackground) {
         sr.sprite = newBackground.sprite;
     }
-    void Update()
+    void LateUpdate()
     {
         globalLight.intensity = lightLevel;
-        transform.position += (new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y) - transform.position * 1.01f) * Time.deltaTime * 100;
+        transform.position = Camera.main.transform.position * 1.01f + Vector3.forward;
     }
 }
