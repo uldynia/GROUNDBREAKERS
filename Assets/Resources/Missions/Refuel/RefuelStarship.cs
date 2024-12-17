@@ -95,7 +95,14 @@ public class RefuelStarship : Mission
             
             yield return null;
         }
-        Loading.instance.SetDoor(false);
+        Takama.instance.SetDoor(false);
         //end match
     }
+
+#if UNITY_EDITOR
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(100, 400, 100, 20), "Teleport to objective")) PlayerController.instance.transform.position = transform.position;
+    }
+#endif
 }

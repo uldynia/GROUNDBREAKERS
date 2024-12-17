@@ -101,7 +101,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
             }
         }
     }
-    [ClientRpc] void SetDoor(bool isOpen) => Loading.instance.SetDoor(isOpen);
+    [ClientRpc] public void SetDoor(bool isOpen) => Loading.instance.SetDoor(isOpen);
     [ClientRpc]
     void TeleportToSpawn() => PlayerController.instance.transform.position = new Vector3(spawnpoint.x, spawnpoint.y);
     [ClientRpc]
