@@ -28,6 +28,7 @@ public class Inventory : NetworkBehaviour
     public bool RemoveItem(Item item, int amount)
     {
         if (item == null) throw new NullReferenceException();
+        if(items.Count == 0) return false;
         var i = items.FindIndex(item => item.Item1);
         if (items[i].Item2 - amount < 0) return false;
         items[i] = (items[i].Item1, items[i].Item2 - amount);
