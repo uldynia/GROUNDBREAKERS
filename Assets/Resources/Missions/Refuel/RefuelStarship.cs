@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
@@ -48,6 +49,7 @@ public class RefuelStarship : Mission
     [Command(requiresAuthority = false)]
     public void Deposit(NetworkConnectionToClient sender = null)
     {
+        if (progress >= 150) return;
         if (sender == null) return;
         HashSet<NetworkIdentity> tmp = new HashSet<NetworkIdentity>(sender.owned);
         Inventory inv;
@@ -55,13 +57,45 @@ public class RefuelStarship : Mission
         {
             if (netIdentity.TryGetComponent<Inventory>(out inv))
             {
-                if (inv.RemoveItem(InventoryManager.instance.items["Fuel"], 1))
+                if (inv.RemoveItem(InventoryManager.instance.items["Fuel"], 1)
+                    #if UNITY_EDITOR
+                    || true
+                    #endif
+                    )
                 {
                     progress += 1;
                     MissionsManager.instance.headerText = $"Current progress: {progress} / 150";
+                    if (progress >= 150) StartCoroutine(MissionEnd());
                 }
                 return;
             }
         }
+    }
+    IEnumerator MissionEnd()
+    {
+        int missionEndTimer = 60;
+        MissionsManager.instance.headerText = "Mission complete!\n<size=10>The Starship will leave in 60 seconds. Get to the ship!</size>";
+        yield return new WaitForSeconds(5);
+        while(missionEndTimer > 0)
+        {
+            MissionsManager.instance.headerText = $"Get to the ship!\n<size=10>{missionEndTimer--} seconds remaining.</size>";
+            yield return new WaitForSeconds(1
+                #if UNITY_EDITOR
+                -0.8f
+                #endif
+                );
+        }
+        float position = transform.position.y + 50;
+        var pos = Vector3Int.RoundToInt(transform.position);
+        Takama.instance.LineFill(0, pos, pos + Vector3Int.up * 200, 30);
+        float i = 1;
+        while (transform.position.y < position)
+        {
+            transform.position += Vector3.up * Time.deltaTime * (i += Time.deltaTime);
+            
+            yield return null;
+        }
+        Loading.instance.SetDoor(false);
+        //end match
     }
 }
