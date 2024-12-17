@@ -24,7 +24,7 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     void Update()
     {
         playerCountText.text = countText;
-        if (PlayerController.instance == null || !PlayerController.instance.isServer || Takama.instance != null)
+        if (PlayerController.instance == null || Takama.instance != null)
         {
             playerCountText.text = "";
             return;
@@ -32,10 +32,13 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
         if (isServer)
         {
             playerCount = NetworkServer.connections.Count;
-            countText = $"Players Ready: {playerReady}/{playerCount}\nStarting in: {(int)startCooldown}";
+            countText = $"Players Ready: {playerReady}/{playerCount}";
+
         }
-        if (playerCount == playerReady)
+        else return;
+        if (playerCount == playerReady && MissionsManager.instance.currentMission != null)
         {
+            countText += $"\nStarting in: {(int)startCooldown}";
             startCooldown -= Time.deltaTime;
             if (startCooldown < 0) // start game
             {
