@@ -2,6 +2,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
 {
@@ -99,6 +100,16 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
                     SetTile(new Vector3Int(x, y), 0);
                 }
             }
+        }
+    }
+    [ClientRpc] public void EndGame()
+    {
+        StartCoroutine(End());
+        IEnumerator End()
+        {
+            Loading.instance.SetDoor(false);
+            yield return new WaitForSeconds(3);
+            SceneManager.LoadScene("EndScreen");
         }
     }
     [ClientRpc] public void SetDoor(bool isOpen) => Loading.instance.SetDoor(isOpen);

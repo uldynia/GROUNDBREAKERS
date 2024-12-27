@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RefuelStarship : Mission
 {
@@ -95,8 +96,7 @@ public class RefuelStarship : Mission
             
             yield return null;
         }
-        Takama.instance.SetDoor(false);
-        //end match
+        Takama.instance.EndGame();
     }
 
 #if UNITY_EDITOR
