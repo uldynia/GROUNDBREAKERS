@@ -11,6 +11,7 @@ public class Loading : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         instance = this; 
     }
     public void SetDoor(bool isOpen)
