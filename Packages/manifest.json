@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.edgegap.unity-servers-plugin": "https://github.com/edgegap/edgegap-unity-plugin.git",
     "com.stalengd.quickruletileeditor": "https://github.com/stalengd/QuickRuleTileEditor.git",
     "com.unity.feature.2d": "2.0.1",
     "com.unity.ide.visualstudio": "2.0.22",
