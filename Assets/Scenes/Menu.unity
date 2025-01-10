@@ -811,9 +811,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1587854693}
-  - component: {fileID: 1587854696}
   - component: {fileID: 1587854695}
-  - component: {fileID: 1587854694}
+  - component: {fileID: 1587854697}
+  - component: {fileID: 1587854698}
   m_Layer: 0
   m_Name: Web transport
   m_TagString: Untagged
@@ -833,23 +833,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1735956027}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1587854694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587854690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetX: 0
-  offsetY: 0
 --- !u!114 &1587854695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,7 +857,7 @@ MonoBehaviour:
   offlineScene: Assets/Scenes/Menu.unity
   onlineScene: Assets/Scenes/Game.unity
   offlineSceneLoadDelay: 0
-  transport: {fileID: 1587854696}
+  transport: {fileID: 0}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
@@ -902,7 +889,7 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
---- !u!114 &1587854696
+--- !u!114 &1587854697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -911,27 +898,108 @@ MonoBehaviour:
   m_GameObject: {fileID: 1587854690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0110f245bfcfc7d459681f7bd9ebc590, type: 3}
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMessageSize: 16384
-  maxHandshakeSize: 16384
-  serverMaxMsgsPerTick: 10000
-  clientMaxMsgsPerTick: 1000
-  sendTimeout: 5000
-  receiveTimeout: 20000
-  noDelay: 1
-  sslEnabled: 0
-  sslProtocols: 3072
-  sslCertJson: ./cert.json
-  port: 27777
-  batchSend: 1
-  waitBeforeSend: 1
-  clientUseWss: 0
-  clientWebsocketSettings:
-    ClientPortOption: 0
-    CustomClientPort: 7777
-  minimumLogLevel: 3
+  offsetX: 0
+  offsetY: 0
+--- !u!114 &1587854698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587854690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7064b1b1d0671194baf55fa8d5f564d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientToServerTransport: {fileID: 1735956026}
+  serverIP: 188.166.231.111
+  serverPort: 7777
+  endpointServerPort: 8080
+  heartBeatInterval: 0.31
+  connectOnAwake: 1
+  authenticationKey: Secret Auth Key
+  disconnectedFromRelay:
+    m_PersistentCalls:
+      m_Calls: []
+  connectedToRelay:
+    m_PersistentCalls:
+      m_Calls: []
+  useNATPunch: 0
+  NATPunchtroughPort: 1
+  useLoadBalancer: 0
+  loadBalancerPort: 7070
+  loadBalancerAddress: 127.0.0.1
+  serverName: My awesome server!
+  extraServerData: Map 1
+  maxServerPlayers: 10
+  isPublicServer: 1
+  serverListUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  serverStatus: Not Started.
+  serverId: 
+  appId: -1
+  region: 1
+--- !u!1 &1735956025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1735956027}
+  - component: {fileID: 1735956026}
+  m_Layer: 0
+  m_Name: LRM - Connector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1735956026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735956025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 7777
+  NoDelay: 1
+  SendTimeout: 20000
+  ReceiveTimeout: 30000
+  serverMaxMessageSize: 16384
+  serverMaxReceivesPerTick: 100000
+  serverSendQueueLimitPerConnection: 100000
+  serverReceiveQueueLimitPerConnection: 10000
+  clientMaxMessageSize: 16384
+  clientMaxReceivesPerTick: 10000
+  clientSendQueueLimit: 5000
+  clientReceiveQueueLimit: 100000
+--- !u!4 &1735956027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735956025}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1587854693}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1869433745
 GameObject:
   m_ObjectHideFlags: 0

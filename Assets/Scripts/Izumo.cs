@@ -1,3 +1,4 @@
+using LightReflectiveMirror;
 using Mirror;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -13,12 +14,15 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     [SerializeField] CanvasGroup lobbyDisplay, loadingScreen;
     [SerializeField] TextMeshProUGUI playerCountText;
     [SerializeField] Takama p_takama;
+    string id;
     private void Start()
     {
         if (Application.platform == RuntimePlatform.WindowsServer)
         {
             FindFirstObjectByType<NetworkManager>().StartServer();
         }
+        var transport = NetworkManager.instance.transport as LightReflectiveMirrorTransport;
+        id = transport.serverId;
     }
     // Update is called once per frame
     void Update()
@@ -32,7 +36,7 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
         if (isServer)
         {
             playerCount = NetworkServer.connections.Count;
-            countText = $"Players Ready: {playerReady}/{playerCount}";
+            countText = $"Server code: {id}\nPlayers Ready: {playerReady}/{playerCount}";
 
         }
         else return;
