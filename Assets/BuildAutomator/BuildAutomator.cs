@@ -19,7 +19,7 @@ public class BuildAutomatorEditor : Editor {
                 var buildPlayerOptions = new BuildPlayerWithProfileOptions();
                 buildPlayerOptions.buildProfile = profile;
                 buildPlayerOptions.options |= BuildOptions.ShowBuiltPlayer;
-                buildPlayerOptions.locationPathName = $"Builds/{profile.name} build/build";
+                buildPlayerOptions.locationPathName = $"Builds/{profile.name}";
                 BuildPipeline.BuildPlayer(buildPlayerOptions);
             }
         }   
