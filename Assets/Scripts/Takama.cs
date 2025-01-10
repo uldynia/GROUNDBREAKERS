@@ -64,7 +64,10 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
             yield return new WaitForSeconds(3);
             EnvironmentManager.instance.lightLevel = 0.2f;
             EnvironmentManager.instance.background = InventoryManager.instance.items["Cave"];
-            TeleportToSpawn();
+            foreach(var obj in FindObjectsByType<PlayerController>(FindObjectsSortMode.None))
+            {
+                obj.transform.position = spawnpoint;
+            }
             SetDoor(true);
             MissionsManager.instance.currentMission = Instantiate(MissionsManager.instance.currentMission);
             NetworkServer.Spawn(MissionsManager.instance.currentMission.gameObject);
@@ -113,8 +116,6 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         }
     }
     [ClientRpc] public void SetDoor(bool isOpen) => Loading.instance.SetDoor(isOpen);
-    [ClientRpc]
-    void TeleportToSpawn() => PlayerController.instance.transform.position = new Vector3(spawnpoint.x, spawnpoint.y);
     [ClientRpc]
     public void BoxFill(Vector3Int position, int id, int startX, int startY, int endX, int endY)
     {
