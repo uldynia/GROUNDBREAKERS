@@ -89,6 +89,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
         return endPoint;
     }
 
+    [ClientRpc]
     public void GenerateCircle(int xCenter, int yCenter, int radius)
     {
         for (int x = xCenter - radius; x <= xCenter + radius; x++)
@@ -97,7 +98,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
             {
                 if ((x - xCenter) * (x - xCenter) + (y - yCenter) * (y - yCenter) <= radius * radius)
                 {
-                    SetTile(new Vector3Int(x, y), 0);
+                    tilemap.SetTile(new Vector3Int(x, y), tiles[0]);
                 }
             }
         }
