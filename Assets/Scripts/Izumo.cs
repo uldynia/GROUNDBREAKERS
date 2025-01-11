@@ -17,10 +17,7 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
     string id;
     private void Start()
     {
-        if (Application.platform == RuntimePlatform.WindowsServer)
-        {
-            FindFirstObjectByType<NetworkManager>().StartServer();
-        }
+        Loading.instance.SetDoor(true);
         var transport = NetworkManager.instance.transport as LightReflectiveMirrorTransport;
         id = transport.serverId;
     }
