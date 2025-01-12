@@ -1993,6 +1993,7 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs:
+  - {fileID: 2321169430522841598, guid: 7dbb8ebada195724886df922a4f46c96, type: 3}
   - {fileID: 8736357752365289050, guid: 7afc652696e2f2741a7e8e74956eb4d4, type: 3}
   - {fileID: 5215847468041602439, guid: 1e41a242ab43082479f1c3aedc559fb9, type: 3}
   - {fileID: 4306137748413243928, guid: 9076713af49beb9479c406b8b9b04e1d, type: 3}
