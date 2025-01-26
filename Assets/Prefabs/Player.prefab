@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 4674459131135171233}
   - component: {fileID: -4044300506828855556}
   - component: {fileID: 3241832572552586844}
+  - component: {fileID: -227344587068762776}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -572,6 +573,27 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &-227344587068762776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306137748413243928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1421135e9f8a347a906fbd1673d8a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  selectable: 1
+  ToolName: Grappling Hook
+  description: "Sie sind das Essen und wir sind die J\xE4ger!"
+  icon: {fileID: -5513050994037168576, guid: a16d564680b51f04dacc4983fd7d5da1, type: 3}
+  button: {fileID: 0}
+  points: []
 --- !u!1 &7720605565912561545
 GameObject:
   m_ObjectHideFlags: 0
