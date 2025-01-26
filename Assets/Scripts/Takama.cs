@@ -11,7 +11,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     public List<TilePlus> tiles = new();
     [SyncVar] Vector3Int spawnpoint;
     public List<Vector3Int> points;
-    [SerializeField] GameObject p_droppeditem;
+    [SerializeField] GameObject p_droppeditem, p_maw;
     private void Start()
     {
         Takama.instance = this;
@@ -56,6 +56,11 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
                 {
                     points.Add(point);
                     GenerateCircle(point.x, point.y, 15);
+                }
+                if(i % 3 == 0)
+                {
+                    var maw = Instantiate(p_maw, point, Quaternion.identity);
+                    NetworkServer.Spawn(maw);
                 }
             }
 

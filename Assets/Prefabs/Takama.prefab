@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: -7341979091332906993}
   - component: {fileID: 3447519878862922}
   - component: {fileID: 2477437617146228529}
-  - component: {fileID: 4531362989425184962}
   m_Layer: 6
   m_Name: Takama
   m_TagString: Takama
@@ -59,6 +58,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c401de4f29bfa6243a486824597c937f, type: 2}
   points: []
   p_droppeditem: {fileID: 5215847468041602439, guid: 1e41a242ab43082479f1c3aedc559fb9, type: 3}
+  p_maw: {fileID: 7566282225815026956, guid: 22d37484ef1e50e489e8c2fe70879a73, type: 3}
 --- !u!114 &3447519878862922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,18 +88,6 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &4531362989425184962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276369140244288179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91165b8515d80d94bb7ba5fd469b56fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9126270036572772867
 GameObject:
   m_ObjectHideFlags: 0
