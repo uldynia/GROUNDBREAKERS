@@ -16,7 +16,7 @@ public class DamageNumberDisplayer : MonoBehaviour
 
     void OnDamage(float damage)
     {
-        StartCoroutine(IDamage(damage));
+        //StartCoroutine(IDamage(damage));
 
     }
     IEnumerator IDamage(float damage)
