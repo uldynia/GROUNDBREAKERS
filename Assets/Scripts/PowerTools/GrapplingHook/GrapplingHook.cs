@@ -22,7 +22,7 @@ public class GrapplingHook : PowerTool
         var hit = Physics2D.Raycast(transform.position, button.deltaNormalized, Mathf.Infinity, LayerMask.GetMask("Terrain"));
         if (hit.collider == null) return;
         Point point = new();
-        point.point = (rb.position - point.point).normalized;
+        point.point = (hit.point - rb.position);
         points.Add(point);
     }
     private void Update()
@@ -42,26 +42,9 @@ public class GrapplingHook : PowerTool
             }
         }
         finalVector /= points.Count;
-        rb.position += finalVector * Time.deltaTime * 10;
+        rb.position += finalVector.normalized * Time.deltaTime * 10;
+
     }
 
-    void OnPostRender()
-    {
-        Matrix4x4 mat = new Matrix4x4();
-        mat.SetTRS(transform.position, transform.rotation, transform.localScale);
-        GL.PushMatrix();
-        GL.MultMatrix(mat);
-        GL.Begin(GL.LINES);
-        //material.SetPass(0);
-        GL.Color(Color.white);
-        int lineListCount = points.Count;
-        foreach (var point in points)
-        {
-            GL.Vertex(transform.position);
-            GL.Vertex(point.point);
-        }
-        GL.End();
-        GL.PopMatrix();
-    }
 
 }
