@@ -69,9 +69,22 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(wait());
         IEnumerator wait()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
             NetworkManager.instance.networkAddress = serverCode.text;
             NetworkManager.instance.StartClient();
+            float timeout = 0;
+            while (NetworkClient.connectState != ConnectState.Connected)
+            {
+                timeout += Time.deltaTime;
+                yield return null;
+                if(timeout > 5)
+                {
+                    Loading.instance.ShowAlert("Connection time exceeds timeout.\nCheck your internet connection and make sure your server code is correct.");
+                    NetworkManager.instance.StopClient();
+                    Loading.instance.SetDoor(true);
+                    break;
+                }
+            }
         }
     }
 }
