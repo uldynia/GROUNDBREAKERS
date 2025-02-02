@@ -32,8 +32,14 @@ public class MissionsManager : NetworkBehaviour
             Instantiate(p_missionDisplay, content).GetComponent<MissionDisplay>().Init(mission);
         }
     }
-    public void Click(Mission mission) {
-        if(!isServer) return;
+    public void Click(Mission mission)
+    {
+        GetComponent<Animator>().Play("close");
+        if (!isServer)
+        {
+            Loading.instance.ShowAlert("Only the host can change the mission.");
+            return;
+        }
         headerText = $"Mission selected: {mission.shortName}";
         currentMission = mission;
     }

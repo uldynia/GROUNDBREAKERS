@@ -168,6 +168,7 @@ namespace LightReflectiveMirror
         {
             if (!Available())
             {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
                 Debug.Log("Not connected to relay! Server failed to start.");
                 return;
             }
