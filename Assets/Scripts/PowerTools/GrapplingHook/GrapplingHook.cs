@@ -7,13 +7,8 @@ public class GrapplingHook : PowerTool
 {
     Rigidbody2D rb;
     Camera cam;
-    [System.Serializable]
-    public class Point
-    {
-        public Vector2 point;
-        public float duration = 2;
-    }
-    public SyncList<Point> points = new();
+    public SyncList<Vector2> points = new();
+    float duration = 0;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,30 +29,23 @@ public class GrapplingHook : PowerTool
         base.OnRelease();
         var hit = Physics2D.Raycast(transform.position, button.deltaNormalized, Mathf.Infinity, LayerMask.GetMask("Terrain"));
         if (hit.collider == null) return;
-        Point point = new();
-        point.point = hit.point;
-        points.Add(point);
+        points.Add(hit.point);
+        duration = 2;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (!isOwned || points.Count == 0) return;
         rb.linearVelocity = Vector3.zero;
         Vector2 finalVector = new();
+        duration -= Time.fixedDeltaTime;
         for (int i = 0; i < points.Count; i++)
         {
-            points[i].duration -= Time.deltaTime;
-            if (points[i].duration < 0) {
-                points.RemoveAt(i);
-            }
-            else
-            {
-                finalVector += points[i].point;
-            }
+            finalVector += points[i];
         }
         finalVector /= points.Count;
         var diff = (finalVector - rb.position);
-        rb.position += diff.normalized * Time.deltaTime * 10;
-        if(diff.sqrMagnitude < 1) points.Clear();
+        rb.MovePosition(rb.position + diff.normalized * Time.fixedDeltaTime * 10 * points.Count);
+        if(diff.sqrMagnitude < 1 || duration < 0) points.Clear();
 
     }
 
@@ -71,7 +59,7 @@ public class GrapplingHook : PowerTool
             Vector2 playerpos = camera.WorldToViewportPoint(rb.position);
             foreach (var point in points)
             {
-                Vector2 grapplePos = camera.WorldToViewportPoint(point.point);
+                Vector2 grapplePos = camera.WorldToViewportPoint(point);
                 GL.Begin(GL.LINES);
                 GL.Color(Color.red);
                 GL.Vertex3(playerpos.x, playerpos.y, 0);
