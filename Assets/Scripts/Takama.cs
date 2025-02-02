@@ -66,7 +66,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
 
 
             yield return new WaitForSeconds(3);
-            EnvironmentManager.instance.lightLevel = 0.2f;
+            EnvironmentManager.instance.lightLevel = 0f;
             EnvironmentManager.instance.background = InventoryManager.instance.items["Cave"];
             TeleportToSpawn();
             SetDoor(true);
