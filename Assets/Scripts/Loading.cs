@@ -54,4 +54,28 @@ public class Loading : MonoBehaviour
         }
         text.text = "";
     }
+    [SerializeField] TextMeshProUGUI alertText;
+    [SerializeField] CanvasGroup alert;
+    public void ShowAlert(string text)
+    {
+        alert.gameObject.SetActive(true);
+        alertText.text = text;
+        StartCoroutine(show());
+        IEnumerator show()
+        {
+            alert.alpha = 0;
+            while ((alert.alpha += Time.deltaTime * 5) < 1) yield return null;
+        }
+    }
+    public void HideAlert()
+    {
+        StartCoroutine(Hide());
+        IEnumerator Hide()
+        {
+            yield return new WaitForSeconds(0.5f);
+            alert.alpha = 1;
+            while ((alert.alpha -= Time.deltaTime * 5)> 0) yield return null;
+            alert.gameObject.SetActive(false);
+        }
+    }
 }

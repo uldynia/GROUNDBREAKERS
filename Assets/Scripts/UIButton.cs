@@ -14,7 +14,8 @@ public class UIButton : MonoBehaviour, IPointerClickHandler, IPointerDownHandler
         StartCoroutine(click());
         IEnumerator click()
         {
-            var clickEffect = Instantiate(p_clickEffect, transform);
+            var clickEffect = Instantiate(p_clickEffect, transform.parent);
+            clickEffect.transform.position = transform.position;
             onClick?.Invoke();
             yield return new WaitForSeconds(0.5f);
             Destroy(clickEffect);

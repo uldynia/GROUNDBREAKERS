@@ -60,6 +60,11 @@ public class MenuManager : MonoBehaviour
     }
     public void JoinGame()
     {
+        if(serverCode.text == "")
+        {
+            Loading.instance.ShowAlert("Server code cannot be empty.");
+            return;
+        }
         Loading.instance.SetDoor(false);
         StartCoroutine(wait());
         IEnumerator wait()
