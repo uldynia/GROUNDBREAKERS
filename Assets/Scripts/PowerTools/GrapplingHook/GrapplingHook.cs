@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 public class GrapplingHook : PowerTool
 {
     Rigidbody2D rb;
+    Camera cam;
     [System.Serializable]
     public class Point
     {
