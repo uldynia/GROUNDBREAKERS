@@ -25,21 +25,37 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(FadeOut());
         IEnumerator FadeOut()
         {
-            while( (menu.alpha -= Time.deltaTime * 5) > 0) yield return null;
+            while( (menu.alpha -= Time.deltaTime * 5) > 0)
+            {
+                #if !UNITY_EDITOR
+                yield return null;
+                #endif
+            }
+            #if !UNITY_EDITOR
             yield return new WaitForSeconds(0.5f);
+            #endif
             float i = 1;
-            while ((lobby.fillAmount += Time.deltaTime * (i += Time.deltaTime * 5)) < 1) yield return null;
+            while ((lobby.fillAmount += Time.deltaTime * (i += Time.deltaTime * 5)) < 1)
+            {
+                #if !UNITY_EDITOR
+                yield return null;
+                #endif
+            }
             lobby.raycastTarget = true;
+            yield return null;
         }
     }
     public void CreateGame()
     {
-        Loading.instance.SetDoor(false);
         StartCoroutine(wait());
         IEnumerator wait()
         {
-            yield return new WaitForSeconds(3f);
+            #if !UNITY_EDITOR
+                Loading.instance.SetDoor(false);
+                yield return new WaitForSeconds(3f);
+            #endif
             NetworkManager.instance.StartHost();
+            yield return null;
         }
     }
     public void JoinGame()
