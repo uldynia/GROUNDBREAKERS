@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] Image lobby;
     void Start()
     {
+        Application.targetFrameRate = 120;
         if(PlayerPrefs.HasKey("username")) {
             usernameField.text = PlayerPrefs.GetString("username");
             PlayerController.menuUsername = usernameField.text;
