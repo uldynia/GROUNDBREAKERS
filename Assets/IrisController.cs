@@ -1,11 +1,14 @@
 ﻿using System.Collections;
+using System.Linq;
 using Mirror;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class IrisController : Mission
 {
     [SerializeField] GameObject p_bullet;
     [SerializeField] GameObject[] hammers;
+    [SerializeField] BoxCollider2D trigger;
     bool active = false;
     [SerializeField] float bulletDamage = 5;
     float direction = 0;
@@ -20,10 +23,11 @@ public class IrisController : Mission
     }
     STATE state;
     float stateDuration = 0;
+    Vector3 origin;
     public override void StartMission()
     {
         base.StartMission();
-        transform.position = Physics2D.Raycast(new Vector2(Takama.instance.points[2].x, Takama.instance.points[2].y), Vector2.down).point + Vector2.up * 5f;
+        transform.position = origin = Physics2D.Raycast(new Vector2(Takama.instance.points[2].x, Takama.instance.points[2].y), Vector2.down).point + Vector2.up * 5f;
         MissionsManager.instance.headerText = "Find the boss.";
         e = GetComponent<Entity>();
         e.onDeath += OnDeath;
@@ -38,6 +42,7 @@ public class IrisController : Mission
             case STATE.SHOWCUTSCENE:
                 if(stateDuration > 4)
                 {
+                    Destroy(trigger);
                     state = STATE.FIREBULLET;
                     stateDuration = 0;
                 }
@@ -67,7 +72,11 @@ public class IrisController : Mission
                 {
                     transform.position += Vector3.right * 30 * Time.deltaTime;
                 }
-                if (stateDuration > 5) SetRandomState();
+                if (stateDuration > 5)
+                {
+                    transform.position = origin;
+                    SetRandomState();
+                }
 
                 break;
             case STATE.SLAM:
@@ -81,7 +90,11 @@ public class IrisController : Mission
                     transform.position += Vector3.down * 10 * Time.deltaTime;
                 }
                 if (stateDuration > 2 && stateDuration < 4) transform.position += Vector3.up * 5 * Time.deltaTime;
-                if (stateDuration > 5) SetRandomState();
+                if (stateDuration > 5)
+                {
+                    transform.position = origin;
+                    SetRandomState();
+                }
 
                 break;
         }
@@ -106,9 +119,13 @@ public class IrisController : Mission
     }
     public PlayerController GetLockedOn()
     {
-        var players = FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
-        if (players.Length == 0) return players[0];
-        return players[Random.Range(0, players.Length)];
+        var players = FindObjectsByType<PlayerController>(FindObjectsSortMode.None).ToList();
+        if (players.Count == 0) return players[0];
+        foreach(var player in players)
+        {
+            if(Vector3.Distance(transform.position, player.transform.position) > 20) players.Remove(player);
+        }
+        return players[Random.Range(0, players.Count)];
     }
     public void SetRandomState()
     {

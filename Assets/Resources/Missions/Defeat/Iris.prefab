@@ -114,6 +114,7 @@ MonoBehaviour:
   thumbnail: {fileID: -168421969075237668, guid: 42d7f6dceeecc6a458da316b12acd6b6, type: 3}
   p_bullet: {fileID: 4137525119752574830, guid: a50e1c022967b8146acbfa17b467c0ca, type: 3}
   hammers: []
+  trigger: {fileID: 7340422250978081838}
   bulletDamage: 5
 --- !u!114 &5268933438348342340
 MonoBehaviour:
