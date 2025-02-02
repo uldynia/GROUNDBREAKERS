@@ -21,6 +21,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     {
         spawnpoint = new Vector3Int(xsize / 10, ysize / 10 * 8, 0);
         Vector3Int point = spawnpoint;
+        List<Vector2> mawPositions = new() ;
         StartCoroutine(init());
         IEnumerator init()
         {
@@ -59,8 +60,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
                 }
                 if(i % 3 == 0)
                 {
-                    var maw = Instantiate(p_maw, point, Quaternion.identity);
-                    NetworkServer.Spawn(maw);
+                 mawPositions.Add(new Vector2(point.x, point.y));
                 }
             }
 
@@ -73,6 +73,13 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
             MissionsManager.instance.currentMission = Instantiate(MissionsManager.instance.currentMission);
             NetworkServer.Spawn(MissionsManager.instance.currentMission.gameObject);
             MissionsManager.instance.currentMission.StartMission();
+
+            foreach(var pos in mawPositions)
+            {
+                var pt = Physics2D.Raycast(pos, Vector2.down).point + Vector2.up * 3;
+                var maw = Instantiate(p_maw, pt, Quaternion.identity);
+                NetworkServer.Spawn(maw);
+            }
         }
     }
     public Vector3Int DrawRandomLine(Vector3Int currentPoint, int length, int thickness, int id)
