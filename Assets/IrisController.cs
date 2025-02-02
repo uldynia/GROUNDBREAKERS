@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
 using Mirror;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class IrisController : Mission
