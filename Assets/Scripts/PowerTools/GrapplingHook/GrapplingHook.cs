@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 
 public class GrapplingHook : PowerTool
 {
+    public static GrapplingHook instance;
     Rigidbody2D rb;
     Camera cam;
     public SyncList<Vector2> points = new();
@@ -12,7 +13,7 @@ public class GrapplingHook : PowerTool
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        if(isOwned) instance = this;
     }
     void OnEnable()
     {
