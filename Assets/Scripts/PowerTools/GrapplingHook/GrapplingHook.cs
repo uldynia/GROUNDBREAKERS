@@ -35,7 +35,6 @@ public class GrapplingHook : PowerTool
     private void FixedUpdate()
     {
         if (!isOwned || points.Count == 0) return;
-        rb.linearVelocity = Vector3.zero;
         Vector2 finalVector = new();
         duration -= Time.fixedDeltaTime;
         for (int i = 0; i < points.Count; i++)
@@ -44,7 +43,7 @@ public class GrapplingHook : PowerTool
         }
         finalVector /= points.Count;
         var diff = (finalVector - rb.position);
-        rb.MovePosition(rb.position + diff.normalized * Time.fixedDeltaTime * 10 * points.Count);
+        rb.linearVelocity = diff.normalized * 10 * points.Count;
         if(diff.sqrMagnitude < 1 || duration < 0) points.Clear();
 
     }
