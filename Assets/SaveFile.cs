@@ -100,6 +100,7 @@ public class SaveSystem : MonoBehaviour
     private void Start()
     {
         Load();
+        InvokeRepeating("Save", 1, 0.1f);
     }
     public void Save()
     {
