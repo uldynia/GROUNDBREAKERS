@@ -4,7 +4,7 @@ using UnityEngine.Purchasing.Extension;
 
 public class IAPManager : IStoreListener, IDetailedStoreListener
 {
-    public static IAPManager instance {  get; private set; }
+    public static IAPManager instance { get; private set; } = new();
     IAPManager()
     {
         instance = this;
