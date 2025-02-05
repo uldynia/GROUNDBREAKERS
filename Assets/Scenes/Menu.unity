@@ -4537,6 +4537,7 @@ GameObject:
   - component: {fileID: 4883957256504663093}
   - component: {fileID: 4883957256504663094}
   - component: {fileID: 4883957256504663095}
+  - component: {fileID: 4883957256504663096}
   m_Layer: 5
   m_Name: LoadingCanvas
   m_TagString: Untagged
@@ -4672,6 +4673,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f10806337cb79e44b59e69c767a378d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4883957256504663096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471188346025551421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7dd963c1a8b427b96975fa211478a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consumePurchase: 1
+  dontDestroyOnLoad: 1
+  onProductsFetched:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4883957256504663094}
+        m_TargetAssemblyTypeName: AdsManager, Assembly-CSharp
+        m_MethodName: OnPurchaseSuccess
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4883957256504663096}
+        m_TargetAssemblyTypeName: UnityEngine.Purchasing.IAPListener, UnityEngine.Purchasing.Codeless
+        m_MethodName: OnPurchaseFailed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPurchaseDetailedFailedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!224 &5067620729765737785
 RectTransform:
   m_ObjectHideFlags: 0

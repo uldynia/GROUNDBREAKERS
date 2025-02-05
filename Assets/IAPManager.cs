@@ -36,17 +36,22 @@ public class IAPManager : IStoreListener, IDetailedStoreListener
 
     public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
     {
-        throw new System.NotImplementedException();
+
+        Loading.instance.ShowAlert($"Purchase failure...\n{failureDescription.message}");
     }
 
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
     {
-        throw new System.NotImplementedException();
     }
 
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
     {
-        //throw new System.NotImplementedException();
-        return new();
+        if(purchaseEvent.purchasedProduct.hasReceipt)
+        {
+            Loading.instance.ShowAlert("Purchase success!\nCoins +100");
+            SaveSystem.variables.AddInt("coins", 100);
+            return PurchaseProcessingResult.Complete;
+        }
+        return PurchaseProcessingResult.Pending;
     }
 }
