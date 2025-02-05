@@ -55,6 +55,7 @@ public class MenuManager : MonoBehaviour
                 Loading.instance.SetDoor(false);
                 yield return new WaitForSeconds(3f);
             #endif
+            SaveSystem.variables.AddInt("coins", -10);
             NetworkManager.instance.StartHost();
             yield return null;
         }
