@@ -33,11 +33,11 @@ public class Izumo : NetworkBehaviour // the lobby. Takama is the main game
         if (isServer)
         {
             playerCount = NetworkServer.connections.Count;
-            countText = $"Server code: {id}\nPlayers Ready: {playerReady}/{playerCount}";
+            countText = $"Server code: {id}\nPlayers Ready: {playerReady / 2}/{playerCount}";
 
         }
         else return;
-        if (playerCount == playerReady && MissionsManager.instance.currentMission != null)
+        if (playerCount == (playerReady/2) && MissionsManager.instance.currentMission != null)
         {
             countText += $"\nStarting in: {(int)startCooldown}";
             startCooldown -= Time.deltaTime;
