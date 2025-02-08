@@ -5,7 +5,10 @@ using UnityEngine;
 public class ExoticFlintKnock : PowerTool
 {
     [SyncVar] public float cooldown;
-    [SerializeField] GameObject p_bullet; 
+    [SerializeField] GameObject p_bullet;
+    [SerializeField] SpriteRenderer sr;
+    [SerializeField] Sprite[] sprites;
+    [SyncVar] public int sprite;
     Rigidbody2D rb;
     private void Start()
     {
@@ -24,18 +27,21 @@ public class ExoticFlintKnock : PowerTool
         {
             isShooting = true;
             float duration = 0;
-            
+            sr.transform.right = delta;
             while ((duration += Time.fixedDeltaTime) < 1)
             {
+                sprite = Mathf.RoundToInt(duration * 8);
                 GrapplingHook.instance.points.Clear();
                 rb.AddForce(-rb.linearVelocity * 10);
                 yield return new WaitForFixedUpdate();
             }
+            sprite = 0;
             Shoot(transform.position, delta);
         }
     }
     private void Update()
     {
+        sr.sprite = sprites[Mathf.Min(sprite, sprites.Length - 1)];
         if (isServer)
         {
             cooldown -= Time.deltaTime;
