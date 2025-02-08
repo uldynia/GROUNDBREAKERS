@@ -6,16 +6,18 @@ using System;
 public class AdsManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize((InitializationStatus initStatus) =>
+    #if !UNITY_EDITOR
+        void Start()
         {
-            // This callback is called once the MobileAds SDK is initialized.
-            LoadRewardedAd();
-        });
+            // Initialize the Google Mobile Ads SDK.
+            MobileAds.Initialize((InitializationStatus initStatus) =>
+            {
+                // This callback is called once the MobileAds SDK is initialized.
+                LoadRewardedAd();
+            });
 
-    }
+        }
+    #endif
 
     // These ad units are configured to always serve test ads.
 #if UNITY_ANDROID
