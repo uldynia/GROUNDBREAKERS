@@ -46,16 +46,17 @@ public class ExoticFlintKnock : PowerTool
     {
         var go = Instantiate(p_bullet, position, Quaternion.identity).GetComponent<FlintKnockBullet>();
         go.Init(delta * 30);
-        foreach(var owned in sender.owned)
+        NetworkServer.Spawn(go.gameObject);
+        foreach (var owned in sender.owned)
         {
             if(owned.TryGetComponent<ExoticFlintKnock>(out var e)) {
-                e.Recoil(delta * -30);
+                e.Recoil(sender, delta * -30);
                 break;
             }
         }
     }
-    [ClientRpc]
-    public void Recoil(Vector3 delta)
+    [TargetRpc]
+    public void Recoil(NetworkConnectionToClient target, Vector3 delta)
     {
         GrapplingHook.instance.points.Clear();
         rb.linearVelocity = delta;

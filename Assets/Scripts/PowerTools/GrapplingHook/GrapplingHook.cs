@@ -8,7 +8,7 @@ public class GrapplingHook : PowerTool
     public static GrapplingHook instance;
     Rigidbody2D rb;
     Camera cam;
-    public SyncList<Vector2> points = new();
+    readonly public SyncList<Vector2> points = new();
     float duration = 0;
     private void Start()
     {
