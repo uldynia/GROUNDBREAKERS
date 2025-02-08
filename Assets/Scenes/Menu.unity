@@ -3309,7 +3309,7 @@ MonoBehaviour:
   - {fileID: 4058891824965133008, guid: 9460c0cdb6099b34bb6d51d86962dca7, type: 3}
   - {fileID: 175984904897349705, guid: 94c9b0a736cc08542a913703fb3fdc24, type: 3}
   - {fileID: 4847775849503192047, guid: 26b7b0f1045350742a5cc4db128f1bbf, type: 3}
-  exceptionsDisconnect: 1
+  exceptionsDisconnect: 0
   snapshotSettings:
     bufferTimeMultiplier: 2
     bufferLimit: 32

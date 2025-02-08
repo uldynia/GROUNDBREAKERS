@@ -24,11 +24,14 @@ public class PlayerHealthbar : MonoBehaviour
             if(e.isLocalPlayer) {
                 tmpro.text += " (Me)";
             }
+            deadSymbol = healthbar.transform.Find("Dead").gameObject;
         }
     }
+    GameObject deadSymbol;
     void OnDamage(float damage)
     {
         foreground.fillAmount = Mathf.Clamp(e.health / e.maxHealth, 0, 1);
+        deadSymbol.SetActive(e.health < 0);
     }
     ~PlayerHealthbar()
     {
