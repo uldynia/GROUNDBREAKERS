@@ -46,10 +46,9 @@ public class ExoticFlintKnock : PowerTool
     {
         var go = Instantiate(p_bullet, position, Quaternion.identity).GetComponent<FlintKnockBullet>();
         go.Init(delta * 30);
-        ExoticFlintKnock e;
         foreach(var owned in sender.owned)
         {
-            if(owned.TryGetComponent<ExoticFlintKnock>(out e)) {
+            if(owned.TryGetComponent<ExoticFlintKnock>(out var e)) {
                 e.Recoil(delta * -30);
                 break;
             }

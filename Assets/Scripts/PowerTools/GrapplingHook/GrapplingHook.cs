@@ -13,7 +13,7 @@ public class GrapplingHook : PowerTool
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if(isOwned) instance = this;
+        if(isLocalPlayer) instance = this;
     }
     void OnEnable()
     {
