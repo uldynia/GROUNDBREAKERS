@@ -12,6 +12,7 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
     [SyncVar] Vector3Int spawnpoint;
     public List<Vector3Int> points;
     [SerializeField] GameObject p_droppeditem, p_maw;
+    List<Entity> entities = new();
     private void Start()
     {
         Takama.instance = this;
@@ -45,6 +46,8 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
                         SetTile(new Vector3Int((int)x, (int)y), 3);
                     }
                 }
+                if(x%5==0)
+                yield return null;
             }
 
             BoxFill(Vector3Int.zero, 1, 0, 0, xsize, ysize);
@@ -65,7 +68,6 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
             }
 
 
-            yield return new WaitForSeconds(3);
             EnvironmentManager.instance.lightLevel = 0f;
             EnvironmentManager.instance.background = InventoryManager.instance.items["Cave"];
             TeleportToSpawn();
@@ -80,7 +82,34 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
                 var maw = Instantiate(p_maw, pt, Quaternion.identity);
                 NetworkServer.Spawn(maw);
             }
+
+            foreach(var player in FindObjectsByType<PlayerController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+            {
+                entities.Add(player.GetComponent<Entity>());
+            }
         }
+    }
+    private void Update()
+    {
+        if(!isServer) return;
+        if (IsDead())
+        {
+            SetWon(false);
+            EndGame();
+        }
+    }
+    [ClientRpc]
+    public void SetWon(bool won) => WinLossManager.instance.won = won;
+    public bool IsDead()
+    {
+        foreach (Entity e in entities)
+        {
+            if (e.health > 0)
+            {
+                return false;
+            }
+        }
+        return entities.Count > 0;
     }
     public Vector3Int DrawRandomLine(Vector3Int currentPoint, int length, int thickness, int id)
     {
@@ -114,11 +143,14 @@ public class Takama : NetworkBehaviour // the main game. Izumo is the lobby.
             }
         }
     }
+    bool ended = false;
     [ClientRpc] public void EndGame()
     {
-        StartCoroutine(End());
+        if(!ended)
+            StartCoroutine(End());
         IEnumerator End()
         {
+            ended = true;
             Loading.instance.SetDoor(false);
             yield return new WaitForSeconds(3);
             SceneManager.LoadScene("EndScreen");

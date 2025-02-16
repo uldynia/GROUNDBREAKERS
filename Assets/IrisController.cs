@@ -106,6 +106,7 @@ public class IrisController : Mission
         StartCoroutine(death());
         IEnumerator death()
         {
+            Takama.instance.SetWon(true);
             var sr = GetComponent<SpriteRenderer>();
             var color = 1f;
             while((color -= (Time.deltaTime * 0.2f)) > 0)

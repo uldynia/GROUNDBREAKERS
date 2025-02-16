@@ -74,8 +74,8 @@ public class RefuelStarship : Mission
     }
     IEnumerator MissionEnd()
     {
-        int missionEndTimer = 60;
-        MissionsManager.instance.headerText = "Mission complete!\n<size=10>The Starship will leave in 60 seconds. Get to the ship!</size>";
+        int missionEndTimer = 10;
+        MissionsManager.instance.headerText = "Mission complete!\n<size=10>The Starship will leave in 10 seconds. Get to the ship!</size>";
         yield return new WaitForSeconds(5);
         while(missionEndTimer > 0)
         {
@@ -96,6 +96,7 @@ public class RefuelStarship : Mission
             
             yield return null;
         }
+        Takama.instance.SetWon(true);
         Takama.instance.EndGame();
     }
 

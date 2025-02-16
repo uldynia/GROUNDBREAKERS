@@ -7,7 +7,7 @@ public class Loading : MonoBehaviour
 {
     public static Loading instance; 
     [SerializeField] Image left, right; 
-    [SerializeField] TextMeshProUGUI text; 
+    [SerializeField] TextMeshProUGUI text;
 
     void Start()
     {

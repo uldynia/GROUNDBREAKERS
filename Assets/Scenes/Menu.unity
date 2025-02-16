@@ -4539,6 +4539,7 @@ GameObject:
   - component: {fileID: 4883957256504663094}
   - component: {fileID: 4883957256504663095}
   - component: {fileID: 4883957256504663096}
+  - component: {fileID: 4883957256504663097}
   m_Layer: 5
   m_Name: LoadingCanvas
   m_TagString: Untagged
@@ -4724,6 +4725,19 @@ MonoBehaviour:
   onPurchaseDetailedFailedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4883957256504663097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471188346025551421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96038166a84e914da7c9f57177e7ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  won: 0
 --- !u!224 &5067620729765737785
 RectTransform:
   m_ObjectHideFlags: 0
