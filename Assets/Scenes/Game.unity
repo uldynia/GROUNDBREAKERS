@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 71687776}
   - component: {fileID: 71687778}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartingArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 135726072}
   - component: {fileID: 135726074}
   - component: {fileID: 135726073}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 145161358}
   - component: {fileID: 145161357}
   - component: {fileID: 145161356}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MissionsMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 289770428}
   - component: {fileID: 289770427}
   - component: {fileID: 289770429}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LoadoutMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -633,7 +633,7 @@ GameObject:
   m_Component:
   - component: {fileID: 366294576}
   - component: {fileID: 366294577}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 420504248}
   - component: {fileID: 420504249}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1428,7 +1428,7 @@ GameObject:
   - component: {fileID: 619394812}
   - component: {fileID: 619394811}
   - component: {fileID: 619394814}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Izumo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1668,7 +1668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 625946522}
   - component: {fileID: 625946523}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1845,7 +1845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 729822917}
   - component: {fileID: 729822918}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2299,7 +2299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 968932057}
   - component: {fileID: 968932055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3420,7 +3420,7 @@ GameObject:
   - component: {fileID: 1721297836}
   - component: {fileID: 1721297835}
   - component: {fileID: 1721297834}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IzumoWorldSpace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3733,7 +3733,7 @@ GameObject:
   - component: {fileID: 1922246041}
   - component: {fileID: 1922246043}
   - component: {fileID: 1922246042}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3858,7 +3858,7 @@ GameObject:
   - component: {fileID: 1936953565}
   - component: {fileID: 1936953567}
   - component: {fileID: 1936953566}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4137,7 +4137,7 @@ GameObject:
   - component: {fileID: 1991742549}
   - component: {fileID: 1991742551}
   - component: {fileID: 1991742550}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}

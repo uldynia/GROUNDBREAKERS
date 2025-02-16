@@ -15,7 +15,7 @@ public class PlayerController : NetworkBehaviour
 
     public Rigidbody2D rb;
     SpriteRenderer sr;
-    bool canJump = true;
+    bool canJump => Physics2D.Raycast(transform.position, Vector2.down, 1, LayerMask.GetMask("Terrain")).collider != null;
     public float cameraTargetSize = 10;
     Entity e;
     void Start()
@@ -65,13 +65,13 @@ public class PlayerController : NetworkBehaviour
             {
                 sprite = 0;
             }
+            transform.position += new Vector3(ControlsManager.instance.horizontal * Time.deltaTime * 10, 0);
             if (canJump)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Jump();
                 }
-                transform.position += new Vector3(ControlsManager.instance.horizontal * Time.deltaTime * 10, 0);
 
             }
         }
